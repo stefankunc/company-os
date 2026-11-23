@@ -12,12 +12,13 @@
 
 ## Sprache, Styling & HTML
 
-| Technologie      | Rolle                         | Grundprinzip                                                                                              |
-| ---------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------- |
-| **TypeScript**   | Typsichere Programmiersprache | Feste Schemas & strikte Typen für stabilen, fehlerarmen Code                                              |
-| **JavaScript**   | Web-Logik                     | Nur für echte Anwendungslogik – nicht für Dinge, die natives HTML/CSS kann                                |
-| **Natives HTML** | Semantik & Basis-Interaktion  | Z. B. `<details>` / `<summary>` für aufklappbare Bereiche statt unnötigem JS                              |
-| **Tailwind CSS** | Utility-First Styling         | Schnelles, konsistentes Styling direkt an den Komponenten; Abstände über `gap` & `padding` statt `margin` |
+| Technologie      | Rolle                          | Grundprinzip                                                                                              |
+| ---------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| **TypeScript**   | Typsichere Programmiersprache  | Feste Schemas & strikte Typen für stabilen, fehlerarmen Code                                              |
+| **Zod**          | Schema- & Laufzeit-Validierung | Prüft externe Daten (APIs, Webhooks, Formulare, JSON-Payloads) zur Laufzeit und liefert passende TS-Typen |
+| **JavaScript**   | Web-Logik                      | Nur für echte Anwendungslogik – nicht für Dinge, die natives HTML/CSS kann                                |
+| **Natives HTML** | Semantik & Basis-Interaktion   | Z. B. `<details>` / `<summary>` für aufklappbare Bereiche statt unnötigem JS                              |
+| **Tailwind CSS** | Utility-First Styling          | Schnelles, konsistentes Styling direkt an den Komponenten; Abstände über `gap` & `padding` statt `margin` |
 
 ## Tooling & Architektur
 

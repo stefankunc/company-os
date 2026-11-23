@@ -46,6 +46,7 @@ C:\Users\Kunc GmbH\Documents\CNT\
   - `packages/ui/src/components/shadcn/` → wiederverwendbare Basis-Elemente (`elements/`, `editable/`) und Blöcke (`studio/`), die app-übergreifend genutzt werden.
   - `apps/<App>/src/components/ui/` → Komponenten, die nur in einer einzelnen App benötigt werden.
 - **Single Source of Truth für Typen:** Geteilte Datenmodelle und Schemas gehören perspektivisch zentral nach `packages/types`, damit Web-, Landing- und Mobile-Apps dieselben Typen nutzen.
+- **Externe SDKs & APIs typsicher wrappen:** Schwach getypte Drittanbieter-Pakete (z. B. Analytics, Queues, externe APIs) werden einmalig hinter einer eigenen, streng typisierten Wrapper-Funktion gekapselt statt direkt in Apps aufgerufen. Externe JSON-Payloads (APIs, Webhooks, Formulare) werden zusätzlich zur Laufzeit mit **Zod** validiert.
 
 ## 3. Layout- & Abstands-Architektur
 
