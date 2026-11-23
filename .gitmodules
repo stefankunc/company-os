@@ -1,0 +1,6 @@
+[submodule "packages/ui/src/components/shadcn/elements"]
+	path = packages/ui/src/components/shadcn/elements
+	url = https://github.com/shadcn-ui/ui.git
+[submodule "packages/ui/src/components/shadcn/studio"]
+	path = packages/ui/src/components/shadcn/studio
+	url = https://github.com/shadcnstudio/shadcn-studio.git
