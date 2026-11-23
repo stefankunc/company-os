@@ -20,7 +20,7 @@ Lies vor jeder Implementierung, Architektur-Entscheidung oder UI-Änderung die p
 
 ## Kurz-Checkliste für jede Aufgabe
 
-1. **Stack & Struktur:** Next.js + React (Web-Apps), Astro (+ optional HTMX) für Landing Pages, React Native/Expo (Mobile), striktes TypeScript (keine `any`-Typen), Tailwind CSS, immer `pnpm` statt `npm`. Komponenten klein halten und Geschäftslogik sauber von der UI trennen (eigene `.ts`-Module / Custom Hooks statt alles in `.tsx`).
+1. **Stack & Struktur:** Next.js (App Router, React Server Components als Standard – `"use client"` nur für kleine interaktive Inseln) + React (Web-Apps), Astro (+ optional HTMX) für Landing Pages, React Native/Expo (Mobile), striktes TypeScript (keine `any`-Typen), Tailwind CSS, immer `pnpm` statt `npm`. Komponenten klein halten und Geschäftslogik sauber von der UI trennen (eigene `.ts`-Module / Custom Hooks statt alles in `.tsx`).
 2. **Layout & HTML:** Abstände über `gap` im Elternelement, `padding` oder Spacer statt `margin`. Natives HTML (z. B. `<details>`/`<summary>`) vor JavaScript bevorzugen.
 3. **UI-Komponenten & Blöcke:** Zuerst lokal prüfen, dann im Browser in Reihenfolge `https://ui.shadcn.com/` → `https://www.shadcn.io/` → `https://shadcnstudio.com/` prüfen, bevorzugt per CLI installieren und gemäß `rules/ui-components.md` ablegen (`packages/ui/src/components/shadcn/` für geteilte Komponenten, `apps/<App>/src/components/ui/` für App-spezifische).
    - Lokale `Editable`-Backup-Quelle (falls offline benötigt): `C:\Users\Kunc GmbH\Documents\Tools Connect\ShadCN\components_ui`
