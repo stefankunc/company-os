@@ -1,0 +1,10 @@
+node_modules
+.next
+.astro
+.expo
+dist
+build
+coverage
+pnpm-lock.yaml
+packages/ui/src/components/shadcn/elements
+packages/ui/src/components/shadcn/studio

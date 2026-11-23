@@ -1,0 +1,29 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Lokale Apps (bewusst nicht in GitHub)
+apps/
+
+# Lokale Fremd-Referenz-Repos (nicht mit hochladen)
+packages/ui/src/components/shadcn/elements/
+packages/ui/src/components/shadcn/studio/
+
+# Build outputs
+.next
+.astro
+.expo
+dist
+build
+out
+coverage
+
+# Env & secrets
+.env
+.env*.local
+
+# OS & editor
+.DS_Store
+Thumbs.db
+*.log
