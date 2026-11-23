@@ -28,11 +28,11 @@ Lies vor jeder Implementierung, Architektur-Entscheidung oder UI-Änderung die p
 4. **Qualität & Abschluss:** Code automatisch mit Prettier formatieren (`rules/code-formatting.md`), Imports/Theme/Styles anpassen, Build & Dev-Server testen und Fehler autonom beheben.
 5. **Videos automatisch & headless erstellen:** Wenn ein Video erstellt werden soll, nutze `apps/Analysis` (`tools/Videos/remotion`, `tools/Videos/hyperframes`, `tools/Videos/Vorlagen`, `skills/video-production/SKILL.md`) gemäß `rules/video-production.md`. **Niemals** `localhost`-Studio/Preview öffnen — komplett unsichtbar per CLI rendern und direkt die fertige Videodatei liefern.
 
-## Git & Pull-Request-Regel (`stefankunc/company-os`)
+## Git & Pull-Request-Regel (`stefankunc/company-os` + Graphite)
 
-Jede Änderung in der lokalen Version wird sauber über einen **neuen Pull Request (PR)** auf GitHub gespeichert:
+Jede Änderung in der lokalen Version wird sauber über einen **neuen Pull Request (PR)** auf GitHub gespeichert – bevorzugt per **Graphite Stack Diffs (`gt`)**, sobald `gt auth` aktiv ist:
 
-1. **Neuen Branch anlegen:** Nie unkontrolliert direkt auf `main` arbeiten – für jede Änderung einen kurzen Branch anlegen (z. B. `feat/...`, `fix/...`, `docs/...`, `chore/...`).
-2. **Prüfen & Committen:** Vor dem Commit `pnpm format:check` (und ggf. `pnpm typecheck`) ausführen und die Änderung mit einer klaren Commit-Nachricht speichern.
-3. **Pushen & PR erstellen:** Den Branch nach `origin` (`https://github.com/stefankunc/company-os`) pushen und direkt einen **Pull Request gegen `main`** erstellen (`gh pr create`) – inklusive kurzer Beschreibung, **was geändert wurde**.
+1. **Neuen Branch / Stack anlegen:** Nie unkontrolliert direkt auf `main` arbeiten – mit `gt create -m "<beschreibung>"` (bzw. `git checkout -b ...`) für jede Änderung einen kurzen Branch anlegen.
+2. **Prüfen & Committen:** Vor dem Commit `pnpm format:check` (und ggf. `pnpm typecheck`) ausführen und die Änderung klar beschreiben.
+3. **Hochladen & PR erstellen:** Mit `gt ss` (Stack Submit) alle offenen Stacks als PRs gegen `main` synchronisieren – bei Review-Feedback `gt modify` + `gt ss`, zum Aufräumen & Rebasen nach Merges `gt sync`. _(Fallback ohne Graphite-Auth: `git push` + PR via `gh api`.)_
 4. **Datenschutz, App-Repos & Submodules:** `apps/` bleibt in `company-os/.gitignore` ausgeschlossen — jede App unter `apps/` (`Connect`, `Hyper`, `Analysis`, `Spark`, `Flux`) bekommt ihr **eigenes privates GitHub-Repo** (sobald dort entwickelt wird), niemals in `company-os` pushen. Die Design-Bibliotheken `packages/ui/src/components/shadcn/elements` (`shadcn-ui/ui`) und `packages/ui/src/components/shadcn/studio` (`shadcnstudio/shadcn-studio`) sind als **Git-Submodules** eingebunden — zum Klonen inkl. beider Bibliotheken `git clone --recursive https://github.com/stefankunc/company-os.git` nutzen.
