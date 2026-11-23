@@ -39,6 +39,7 @@ C:\Users\Kunc GmbH\Documents\CNT\
 ## 2. Komponenten-Architektur (Baustein-Prinzip)
 
 - **Modular bauen:** Jede Website in Next.js & React wird in kleine, wiederverwendbare Bausteine zerlegt.
+- **Komponenten klein halten & Logik von der UI trennen:** UI-Komponenten (`.tsx`) bleiben schlank und auf die Darstellung fokussiert; Geschäftslogik, Berechnungen und API-Abfragen werden sauber in eigene `.ts`-Dateien oder Custom Hooks ausgelagert.
 - **Klare Trennung nach Wiederverwendbarkeit:**
   - `packages/ui/src/components/shadcn/` → wiederverwendbare Basis-Elemente (`elements/`, `editable/`) und Blöcke (`studio/`), die app-übergreifend genutzt werden.
   - `apps/<App>/src/components/ui/` → Komponenten, die nur in einer einzelnen App benötigt werden.
