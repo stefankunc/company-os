@@ -16,6 +16,7 @@ Lies vor jeder Implementierung, Architektur-Entscheidung oder UI-Änderung die p
 - **Aufbau & Struktur:** `C:\Users\Kunc GmbH\Documents\CNT\rules\aufbau.md`
 - **Vermeiden (No-Gos):** `C:\Users\Kunc GmbH\Documents\CNT\rules\vermeiden.md`
 - **UI-Komponenten & Quellen:** `C:\Users\Kunc GmbH\Documents\CNT\rules\ui-components.md`
+- **Videoproduktion (Headless):** `C:\Users\Kunc GmbH\Documents\CNT\rules\video-production.md`
 - **Code-Formatierung (Prettier):** `C:\Users\Kunc GmbH\Documents\CNT\rules\code-formatting.md`
 
 ## Kurz-Checkliste für jede Aufgabe
@@ -25,6 +26,7 @@ Lies vor jeder Implementierung, Architektur-Entscheidung oder UI-Änderung die p
 3. **UI-Komponenten & Blöcke:** Zuerst lokal prüfen, dann im Browser in Reihenfolge `https://ui.shadcn.com/` → `https://www.shadcn.io/` → `https://shadcnstudio.com/` prüfen, bevorzugt per CLI installieren und gemäß `rules/ui-components.md` ablegen (`packages/ui/src/components/shadcn/` für geteilte Komponenten, `apps/<App>/src/components/ui/` für App-spezifische).
    - Lokale `Editable`-Backup-Quelle (falls offline benötigt): `C:\Users\Kunc GmbH\Documents\Tools Connect\ShadCN\components_ui`
 4. **Qualität & Abschluss:** Code automatisch mit Prettier formatieren (`rules/code-formatting.md`), Imports/Theme/Styles anpassen, Build & Dev-Server testen und Fehler autonom beheben.
+5. **Videos automatisch & headless erstellen:** Wenn ein Video erstellt werden soll, nutze `apps/Analysis` (`tools/Videos/remotion`, `tools/Videos/hyperframes`, `tools/Videos/Vorlagen`, `skills/video-production/SKILL.md`) gemäß `rules/video-production.md`. **Niemals** `localhost`-Studio/Preview öffnen — komplett unsichtbar per CLI rendern und direkt die fertige Videodatei liefern.
 
 ## Git & Pull-Request-Regel (`stefankunc/company-os`)
 

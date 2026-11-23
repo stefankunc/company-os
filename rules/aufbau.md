@@ -28,6 +28,7 @@ C:\Users\Kunc GmbH\Documents\CNT\
 │   ├── aufbau.md              # Monorepo-Struktur & Architektur-Prinzipien
 │   ├── vermeiden.md           # Verbindliche No-Gos & Alternativen
 │   ├── ui-components.md       # UI-Quellen, Speicherorte und Integration
+│   ├── video-production.md    # Headless-Videoproduktion (Remotion & HyperFrames in apps/Analysis)
 │   └── code-formatting.md     # Prettier-Regeln
 │
 ├── package.json
@@ -40,7 +41,7 @@ C:\Users\Kunc GmbH\Documents\CNT\
 
 - **Modular bauen:** Jede Website in Next.js & React wird in kleine, wiederverwendbare Bausteine zerlegt.
 - **Komponenten klein halten & Logik von der UI trennen:** UI-Komponenten (`.tsx`) bleiben schlank und auf die Darstellung fokussiert; Geschäftslogik, Berechnungen und API-Abfragen werden sauber in eigene `.ts`-Dateien oder Custom Hooks ausgelagert.
-- **React Server Components (RSC) als Standard:** In Next.js (App Router) ist jede Komponente standardmäßig eine Server Component (Datenabfragen per `async/await` auf dem Server, kein unnötiges Client-JavaScript). `"use client"` wird nur für möglichst kleine, tief liegende interaktive Inseln genutzt (z. B. `useState`, Events, `Editable`). **Boundaries beachten:** Eine Client Component darf keine Server Component direkt importieren – stattdessen die Server Component als `children` oder Prop übergeben.
+- **React Server Components (RSC) als Standard:** In Next.js (App Router) ist jede Komponente standardmäßig eine Server Component (Datenabfragen per `async/await` auf dem Server, kein unnötiges Client-JavaScript). `"use client"` wird nur für möglichst kleine, tief liegende interaktive Inseln genutzt (z. B. `useState`, Events, `Editable`). **Boundaries beachten:** Eine Client Component darf keine Server Component direkt importieren – stattdessen die Server Component als `children` oder Prop übergeben. **Streaming mit `<Suspense>`:** Langsam ladende Server Components in `<Suspense fallback={...}>` kapseln, damit der Server sofort das HTML-Skelett ausliefert und Daten ohne Wasserfall-Wartezeiten nachstreamt.
 - **Klare Trennung nach Wiederverwendbarkeit:**
   - `packages/ui/src/components/shadcn/` → wiederverwendbare Basis-Elemente (`elements/`, `editable/`) und Blöcke (`studio/`), die app-übergreifend genutzt werden.
   - `apps/<App>/src/components/ui/` → Komponenten, die nur in einer einzelnen App benötigt werden.

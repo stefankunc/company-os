@@ -8,3 +8,5 @@ coverage
 pnpm-lock.yaml
 packages/ui/src/components/shadcn/elements
 packages/ui/src/components/shadcn/studio
+apps/Analysis/tools/Videos/remotion
+apps/Analysis/tools/Videos/hyperframes
