@@ -28,6 +28,7 @@ C:\Users\Kunc GmbH\Documents\CNT\
 │   ├── aufbau.md              # Monorepo-Struktur & Architektur-Prinzipien
 │   ├── vermeiden.md           # Verbindliche No-Gos & Alternativen
 │   ├── ui-components.md       # UI-Quellen, Speicherorte und Integration
+│   ├── video-production.md    # Headless-Videoproduktion (Remotion & HyperFrames in apps/Analysis)
 │   └── code-formatting.md     # Prettier-Regeln
 │
 ├── package.json
@@ -39,10 +40,14 @@ C:\Users\Kunc GmbH\Documents\CNT\
 ## 2. Komponenten-Architektur (Baustein-Prinzip)
 
 - **Modular bauen:** Jede Website in Next.js & React wird in kleine, wiederverwendbare Bausteine zerlegt.
+- **Komponenten klein halten & Logik von der UI trennen:** UI-Komponenten (`.tsx`) bleiben schlank und auf die Darstellung fokussiert; Geschäftslogik, Berechnungen und API-Abfragen werden sauber in eigene `.ts`-Dateien oder Custom Hooks ausgelagert.
+- **React Server Components (RSC) als Standard:** In Next.js (App Router) ist jede Komponente standardmäßig eine Server Component (Datenabfragen per `async/await` auf dem Server, kein unnötiges Client-JavaScript). `"use client"` wird nur für möglichst kleine, tief liegende interaktive Inseln genutzt (z. B. `useState`, Events, `Editable`). **Boundaries beachten:** Eine Client Component darf keine Server Component direkt importieren – stattdessen die Server Component als `children` oder Prop übergeben. **Streaming mit `<Suspense>`:** Langsam ladende Server Components in `<Suspense fallback={...}>` kapseln, damit der Server sofort das HTML-Skelett ausliefert und Daten ohne Wasserfall-Wartezeiten nachstreamt.
 - **Klare Trennung nach Wiederverwendbarkeit:**
   - `packages/ui/src/components/shadcn/` → wiederverwendbare Basis-Elemente (`elements/`, `editable/`) und Blöcke (`studio/`), die app-übergreifend genutzt werden.
   - `apps/<App>/src/components/ui/` → Komponenten, die nur in einer einzelnen App benötigt werden.
 - **Single Source of Truth für Typen:** Geteilte Datenmodelle und Schemas gehören perspektivisch zentral nach `packages/types`, damit Web-, Landing- und Mobile-Apps dieselben Typen nutzen.
+- **Externe SDKs & APIs typsicher wrappen:** Schwach getypte Drittanbieter-Pakete (z. B. Analytics, Queues, externe APIs) werden einmalig hinter einer eigenen, streng typisierten Wrapper-Funktion gekapselt statt direkt in Apps aufgerufen. Externe JSON-Payloads (APIs, Webhooks, Formulare) werden zusätzlich zur Laufzeit mit **Zod** validiert.
+- **Kein „Config Hell“ (Root sauber halten):** Tools mit guten Defaults bevorzugen, Tool-Konfigurationen wo möglich direkt in `package.json` ablegen (z. B. `"prettier"`) und das Root-Verzeichnis strikt schlank halten.
 
 ## 3. Layout- & Abstands-Architektur
 
@@ -57,3 +62,8 @@ C:\Users\Kunc GmbH\Documents\CNT\
 2. **Stufe 2 – Shared Packages:** `packages/ui` sauber als Workspace-Paket anbinden und bei Bedarf `packages/types` & `packages/config` ergänzen.
 3. **Stufe 3 – Web-Apps & Landing Pages:** Apps unter `apps/` (Next.js für Web-Apps, Astro + optional HTMX für Landing Pages) mit `packages/ui` verbinden.
 4. **Stufe 4 – Mobile:** React Native (Expo) ergänzen, sobald die Mobile-Phase startet, und geteilte Typen aus `packages/types` mitnutzen.
+
+## 5. GitHub-Repository-Aufteilung
+
+- **Fundament-Repo (`stefankunc/company-os`, privat):** Enthält `Claude.md`, `rules/`, `packages/ui`, `packages/types`, Submodules (`elements/`, `studio/`) sowie die Root-Configs (`pnpm-workspace.yaml`, TypeScript, Prettier).
+- **Einzelne App-Repos (jeweils privat):** `apps/` bleibt in `company-os/.gitignore` ausgeschlossen. Jede App unter `apps/` (`Connect`, `Hyper`, `Analysis`, `Spark`, `Flux`) bekommt ein **eigenes privates GitHub-Repository**, sobald dort aktiv entwickelt wird. Lokal arbeiten alle Apps trotzdem nahtlos über `pnpm-workspace.yaml` mit `@cnt/ui` und `@cnt/types` zusammen.
