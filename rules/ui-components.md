@@ -25,3 +25,7 @@
 
 - **Barrierefreie Primitives:** Interaktive UI-Muster (`Dialog`, `Dropdown`, `Tabs`, `Popover`, `Tooltip`) immer über `shadcn/ui`-Primitives (Radix / Ark UI) statt Eigenbau-`<div>`-Lösungen umsetzen.
 - **Semantik, Tastatur & Fokus:** Echtes `<button>`/`<a>` statt `<div onClick>`, verknüpfte `<label>` für Inputs, `aria-label` für Icon-Buttons, sichtbare Fokus-States (`focus-visible`) und WCAG-Kontrast ≥ 4,5:1 (`rules/fonts.md`).
+
+## Styling & Varianten
+
+- **`cn()` & Varianten (`cva`):** Dynamische oder überschreibbare Tailwind-Klassen immer über `cn()` (`clsx` + `tailwind-merge`) mergen – nie per Template-String oder nacktem `clsx` (verhindert CSS-Spezifitäts-Bugs). Komponenten-Varianten typsicher mit `cva` definieren; wenn Ad-hoc-Overrides verboten sein sollen, `className`-Prop weglassen.
