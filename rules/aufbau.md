@@ -67,3 +67,11 @@ C:\Users\Kunc GmbH\Documents\CNT\
 
 - **Fundament-Repo (`stefankunc/company-os`, privat):** Enthält `Claude.md`, `rules/`, `packages/ui`, `packages/types`, Submodules (`elements/`, `studio/`) sowie die Root-Configs (`pnpm-workspace.yaml`, TypeScript, Prettier).
 - **Einzelne App-Repos (jeweils privat):** `apps/` bleibt in `company-os/.gitignore` ausgeschlossen. Jede App unter `apps/` (`Connect`, `Hyper`, `Analysis`, `Spark`, `Flux`) bekommt ein **eigenes privates GitHub-Repository**, sobald dort aktiv entwickelt wird. Lokal arbeiten alle Apps trotzdem nahtlos über `pnpm-workspace.yaml` mit `@cnt/ui` und `@cnt/types` zusammen.
+
+## 6. Security & Data Access Layer (DAL)
+
+- **Zentraler Data Access Layer (DAL):** Alle Datenbankabfragen einer App liegen gebündelt an einem Ort (z. B. `src/data/`) und sind ganz oben durch `import "server-only";` geschützt – ein versehentlicher Client-Import bricht den Build sofort ab.
+- **Nur geprüfte DTOs zurückgeben:** Niemals `SELECT *` oder rohe Datenbank-Objekte (mit Tokens, Hashes, internen Feldern) an Client Components durchreichen – der DAL liefert nur explizit erlaubte DTO-Felder zurück.
+- **Auth bei jedem Datenzugriff prüfen:** Berechtigungen und Auth-Cookies immer direkt im DAL prüfen, nicht nur einmal oben auf Seiten- oder Layout-Ebene.
+- **Server Actions (`"use server"`) absichern:** Secrets erst _innerhalb_ der Server Action laden (nie aus äußerem Scope capturen), IDs sauber über `.bind()` übergeben und Eingaben immer mit **Zod** validieren.
+- **Keine Mutationen beim Rendern:** Server Components lesen ausschließlich Daten – Schreibvorgänge und Seiteneffekte passieren nur in Server Actions (`POST`) oder dedizierten Mutate-Endpunkten.
