@@ -22,9 +22,10 @@
 
 ## Tooling & Architektur
 
-| Werkzeug     | Rolle                  | Standard                                                                                         |
-| ------------ | ---------------------- | ------------------------------------------------------------------------------------------------ |
-| **Monorepo** | Repository-Architektur | Alle Apps (`apps/`) und geteilter Code (`packages/`) in einem zentralen Repo                     |
-| **pnpm**     | Paketmanager           | Immer `pnpm` statt `npm` (schneller, konsistente Workspaces)                                     |
-| **Prettier** | Code-Formatierung      | Automatische, einheitliche Formatierung im gesamten Repo                                         |
-| **Bruno**    | API-Tests (vorgemerkt) | Offline-first, Git-basiert (`bru`-Dateien & CLI) – einsetzen, sobald eigene APIs getestet werden |
+| Werkzeug        | Rolle                      | Standard                                                                                                                                                                                                       |
+| --------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Monorepo**    | Repository-Architektur     | Alle Apps (`apps/`) und geteilter Code (`packages/`) in einem zentralen Repo                                                                                                                                   |
+| **pnpm**        | Paketmanager               | Immer `pnpm` statt `npm` (schneller, konsistente Workspaces)                                                                                                                                                   |
+| **Prettier**    | Code-Formatierung          | Automatische, einheitliche Formatierung im gesamten Repo                                                                                                                                                       |
+| **Bruno**       | API-Tests (vorgemerkt)     | Offline-first, Git-basiert (`bru`-Dateien & CLI) – einsetzen, sobald eigene APIs getestet werden                                                                                                               |
+| **Drizzle ORM** | SQL-ORM (100 % TypeScript) | Typsichere DB-Schemas ohne eigene Schema-Sprache; nutzt Tabellen-Präfixe pro App (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`) für eine gemeinsame SQL-Datenbank (z. B. PostgreSQL / Neon / Supabase) |
