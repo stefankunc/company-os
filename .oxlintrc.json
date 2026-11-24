@@ -16,6 +16,7 @@
     "cnt/no-manual-memo": "error",
     "cnt/no-test-skip-or-only": "error",
     "cnt/no-raw-process-env": "error",
-    "cnt/no-stub-slop": "error"
+    "cnt/no-stub-slop": "error",
+    "cnt/require-ui-primitives": "error"
   }
 }
