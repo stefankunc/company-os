@@ -1,80 +1,41 @@
-# Aufbau
+# Aufbau & Architektur
 
-## 1. Monorepo-Ordnerstruktur
-
-Alle CNT-Apps und geteilten Pakete liegen gemeinsam in einem Repository (`pnpm` Workspaces):
+## 1. Monorepo-Struktur
 
 ```txt
-C:\Users\Kunc GmbH\Documents\CNT\
-├── apps\
-│   ├── Company-OS\            # CNT Landingpage & interaktives Portfolio (Astro)
-│   ├── Connect\               # Connect-App
-│   ├── Hyper\                 # Hyper-App
-│   ├── Analysis\              # Analysis-App (Headless-Video-Studio)
-│   ├── Spark\                 # Spark-App
-│   └── Flux\                  # Flux-App (Store-Plattform)
-│
-├── packages\
-│   ├── ui\                    # Geteilte UI-Komponenten (Tailwind + shadcn Basis)
-│   │   ├── src\components\shadcn\
-│   │   │   ├── elements\      # Allgemeine UI-Komponenten (shadcn/ui)
-│   │   │   ├── editable\      # Inline-Textbearbeitung (shadcn.io)
-│   │   │   └── studio\        # Vorgefertigte Blöcke & Komponenten (ShadCN Studio)
-│   │   └── package.json
-│   ├── types\                 # (Geplant) Gemeinsame TypeScript-Typen & Daten-Schemas
-│   └── config\                # (Geplant) Geteilte TypeScript-, Prettier- & Tailwind-Configs
-│
-├── rules\
-│   ├── tech-stack.md          # Verbindlicher Tech Stack
-│   ├── aufbau.md              # Monorepo-Struktur & Architektur-Prinzipien
-│   ├── vermeiden.md           # Verbindliche No-Gos & Alternativen
-│   ├── ui-components.md       # UI-Quellen, Speicherorte und Integration
-│   ├── fonts.md               # Standard-Schriftarten (Geist & Geist Mono)
-│   ├── video-production.md    # Headless-Videoproduktion (Remotion & HyperFrames in apps/Analysis)
-│   └── code-formatting.md     # Prettier-Regeln
-│
-├── package.json
-├── pnpm-workspace.yaml
-├── pnpm-lock.yaml
-└── Claude.md
+CNT/
+├── apps/ (Company-OS, Connect, Hyper, Analysis, Spark, Flux)   # lokal, nicht in company-os Git
+├── packages/
+│   ├── ui/src/components/shadcn/{elements, editable, studio}   # @cnt/ui
+│   └── types/                                                  # @cnt/types
+├── rules/ (tech-stack, aufbau, vermeiden, ui-components, fonts, video-production, code-formatting)
+└── package.json, pnpm-workspace.yaml, tsconfig.base.json, Claude.md
 ```
 
-## 2. Komponenten-Architektur (Baustein-Prinzip)
+## 2. Komponenten, RSC & Daten
 
-- **Modular bauen:** Jede Website in Next.js & React wird in kleine, wiederverwendbare Bausteine zerlegt.
-- **Komponenten klein halten & Logik von der UI trennen:** UI-Komponenten (`.tsx`) bleiben schlank und auf die Darstellung fokussiert; Geschäftslogik, Berechnungen und API-Abfragen werden sauber in eigene `.ts`-Dateien oder Custom Hooks ausgelagert.
-- **React Server Components (RSC) als Standard:** In Next.js (App Router) ist jede Komponente standardmäßig eine Server Component (Datenabfragen per `async/await` auf dem Server, kein unnötiges Client-JavaScript). `"use client"` wird nur für möglichst kleine, tief liegende interaktive Inseln genutzt (z. B. `useState`, Events, `Editable`). **Boundaries beachten:** Eine Client Component darf keine Server Component direkt importieren – stattdessen die Server Component als `children` oder Prop übergeben. **Streaming mit `<Suspense>` & Partial Prerendering (PPR):** Langsam ladende oder dynamische Server Components (`cookies()`, `headers()`, Nutzerdaten, Live-Abfragen) immer in `<Suspense fallback={...}>` kapseln und nie oben im statischen Layout-Rahmen ausführen – so wird die statische Hülle (Header/Navigation) sofort ausgeliefert und dynamische Inhalte streamen nahtlos nach.
-- **Klare Trennung nach Wiederverwendbarkeit:**
-  - `packages/ui/src/components/shadcn/` → wiederverwendbare Basis-Elemente (`elements/`, `editable/`) und Blöcke (`studio/`), die app-übergreifend genutzt werden.
-  - `apps/<App>/src/components/ui/` → Komponenten, die nur in einer einzelnen App benötigt werden.
-- **Single Source of Truth für Typen:** Geteilte Datenmodelle und Schemas gehören perspektivisch zentral nach `packages/types`, damit Web-, Landing- und Mobile-Apps dieselben Typen nutzen.
-- **Externe SDKs & APIs typsicher wrappen:** Schwach getypte Drittanbieter-Pakete (z. B. Analytics, Queues, externe APIs) werden einmalig hinter einer eigenen, streng typisierten Wrapper-Funktion gekapselt statt direkt in Apps aufgerufen. Externe JSON-Payloads (APIs, Webhooks, Formulare) werden zusätzlich zur Laufzeit mit **Zod** validiert.
-- **Kein „Config Hell“ (Root sauber halten):** Tools mit guten Defaults bevorzugen, Tool-Konfigurationen wo möglich direkt in `package.json` ablegen (z. B. `"prettier"`) und das Root-Verzeichnis strikt schlank halten.
+- **Modular & getrennt:** Kleine `.tsx`-UI-Komponenten; Geschäftslogik/APIs in `.ts`-Dateien oder Custom Hooks. Shared UI → `packages/ui`, App-UI → `apps/<App>/src/components/ui`, Shared Types → `packages/types`.
+- **RSC-First (Next.js App Router):** Standardmäßig Server Components (`async/await` auf Server). `"use client"` nur tief in kleinen interaktiven Inseln (`useState`, Events, `Editable`).
+- **Boundaries:** Client Components importieren nie Server Components direkt – immer als `children` oder Prop übergeben.
+- **Streaming & PPR:** Langsame/dynamische Server Components (`cookies()`, `headers()`, Nutzer-/Live-Daten) in `<Suspense fallback={...}>` kapseln, nie oben im statischen Layout – Hülle lädt sofort, Dynamik streamt nach.
+- **Externe SDKs/APIs:** Schwach getypte Drittanbieter-SDKs einmalig hinter typsicheren Wrappern kapseln; externe JSON-Payloads mit **Zod** validieren.
+- **Kein Config Hell:** Tools mit guten Defaults; Configs wo möglich in `package.json`; Root schlank halten.
 
-## 3. Layout- & Abstands-Architektur
+## 3. Layout & CSS
 
-- **Elternelement bestimmt den Abstand:** Abstände zwischen Elementen werden über Flexbox/Grid + `gap` am Elternelement gesteuert – nicht über Außenabstände an Kind-Komponenten.
-- **`padding` statt `margin`:** Innenabstände (`padding`, ggf. mit Wrapper-Element) ersetzen `margin` in fast allen Fällen und vermeiden Margin-Collapse-Fehler.
-- **Spacer-Elemente:** Wenn zwischen einzelnen Elementen gezielt ungleiche Abstände nötig sind, werden explizite Wrapper-/Spacer-Elemente genutzt statt Margin-Hacks.
-- **Natives HTML zuerst:** Interaktive Standardmuster (z. B. aufklappbare Bereiche) werden primär mit nativem HTML (`<details>` / `<summary>`) umgesetzt, bevor JavaScript eingesetzt wird.
+- **Elternelement steuert Abstände:** Flexbox/Grid + `gap` am Parent (keine Außenabstände an Kindern).
+- **`padding` statt `margin`:** Vermeidet Margin-Collapse; bei ungleichen Abständen Wrapper-/Spacer-Elemente nutzen.
+- **Natives HTML zuerst:** Z. B. `<details>`/`<summary>` statt JS.
 
-## 4. Einrichtungs-Reihenfolge (Ausbaustufen)
+## 4. Security & Data Access Layer (DAL)
 
-1. **Stufe 1 – Fundament:** `pnpm-workspace.yaml` befüllen, `packageManager` auf `pnpm` festnageln, zentrale TypeScript- & Prettier-Config anlegen.
-2. **Stufe 2 – Shared Packages:** `packages/ui` sauber als Workspace-Paket anbinden und bei Bedarf `packages/types` & `packages/config` ergänzen.
-3. **Stufe 3 – Web-Apps & Landing Pages:** Apps unter `apps/` (Next.js für Web-Apps, Astro + optional HTMX für Landing Pages) mit `packages/ui` verbinden.
-4. **Stufe 4 – Mobile:** React Native (Expo) ergänzen, sobald die Mobile-Phase startet, und geteilte Typen aus `packages/types` mitnutzen.
+- **Drizzle + Präfixe:** Schemas in TS mit `tableCreator` (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`).
+- **Zentraler DAL (`src/data/`):** Oben `import "server-only";` (bricht Build bei Client-Import).
+- **Nur DTOs:** Nie `SELECT *` oder rohe DB-Objekte an Clients geben – nur explizit erlaubte Felder.
+- **Auth überall im DAL:** Cookies/Rechte bei jedem Datenzugriff prüfen, nicht nur auf Seiten-Ebene.
+- **Server Actions (`"use server"`):** Secrets erst in der Action laden, IDs via `.bind()`, Inputs mit **Zod** prüfen. Keine Mutationen beim RSC-Rendern.
 
-## 5. GitHub-Repository-Aufteilung
+## 5. GitHub-Repo-Aufteilung
 
-- **Fundament-Repo (`stefankunc/company-os`, privat):** Enthält `Claude.md`, `rules/`, `packages/ui`, `packages/types`, Submodules (`elements/`, `studio/`) sowie die Root-Configs (`pnpm-workspace.yaml`, TypeScript, Prettier).
-- **Einzelne App-Repos (jeweils privat):** `apps/` bleibt in `company-os/.gitignore` ausgeschlossen. Jede App unter `apps/` (`Connect`, `Hyper`, `Analysis`, `Spark`, `Flux`) bekommt ein **eigenes privates GitHub-Repository**, sobald dort aktiv entwickelt wird. Lokal arbeiten alle Apps trotzdem nahtlos über `pnpm-workspace.yaml` mit `@cnt/ui` und `@cnt/types` zusammen.
-
-## 6. Security & Data Access Layer (DAL)
-
-- **Drizzle ORM & App-Tabellen-Präfixe:** Datenbank-Schemas werden komplett in TypeScript mit **Drizzle ORM** definiert. Jede App nutzt einen eigenen Tabellen-Präfix via `tableCreator` (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`), sodass alle CNT-Apps bei Bedarf eine einzige SQL-Datenbank sauber ohne Tabellen-Kollisionen teilen können.
-- **Zentraler Data Access Layer (DAL):** Alle Datenbankabfragen einer App liegen gebündelt an einem Ort (z. B. `src/data/`) und sind ganz oben durch `import "server-only";` geschützt – ein versehentlicher Client-Import bricht den Build sofort ab.
-- **Nur geprüfte DTOs zurückgeben:** Niemals `SELECT *` oder rohe Datenbank-Objekte (mit Tokens, Hashes, internen Feldern) an Client Components durchreichen – der DAL liefert nur explizit erlaubte DTO-Felder zurück.
-- **Auth bei jedem Datenzugriff prüfen:** Berechtigungen und Auth-Cookies immer direkt im DAL prüfen, nicht nur einmal oben auf Seiten- oder Layout-Ebene.
-- **Server Actions (`"use server"`) absichern:** Secrets erst _innerhalb_ der Server Action laden (nie aus äußerem Scope capturen), IDs sauber über `.bind()` übergeben und Eingaben immer mit **Zod** validieren.
-- **Keine Mutationen beim Rendern:** Server Components lesen ausschließlich Daten – Schreibvorgänge und Seiteneffekte passieren nur in Server Actions (`POST`) oder dedizierten Mutate-Endpunkten.
+- **`stefankunc/company-os` (privat):** `Claude.md`, `rules/`, `packages/ui`, `packages/types`, Submodules (`elements/`, `studio/`), Root-Configs.
+- **App-Repos (je privat):** `apps/` bleibt in `.gitignore`; jede App bekommt ihr eigenes privates Repo, sobald dort Code entsteht. Lokal trotzdem voll über `pnpm-workspace.yaml` verbunden.

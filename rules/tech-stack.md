@@ -2,32 +2,24 @@
 
 ## Frameworks & Apps
 
-| Technologie             | Rolle                                             | Wann wir es nutzen                                                                                   |
-| ----------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Next.js**             | Full-Stack Web-Framework (Frontend + Backend/API) | Haupt-Web-Apps, Dashboards, geschützte Bereiche, Server Actions & API-Routen                         |
-| **React**               | UI-Bibliothek                                     | Wiederverwendbare UI-Bausteine & komplexe interaktive Oberflächen in Next.js                         |
-| **Astro**               | Static / Content-First Framework                  | Schnelle Landing Pages, Marketing-Seiten, SEO-Seiten                                                 |
-| **HTMX**                | Server-gestützte Interaktivität                   | Einfache dynamische Bereiche auf server-gerenderten Seiten / Astro (nicht gegen React-State mischen) |
-| **React Native (Expo)** | Mobile-Framework                                  | iOS- & Android-Apps mit geteilter Logik aus dem Monorepo                                             |
+- **Next.js (App Router):** Full-Stack Web-Apps, Dashboards, Server Components, Server Actions, APIs.
+- **React:** Wiederverwendbare UI-Bausteine in Next.js.
+- **Astro:** Statische/Content-First Landing Pages & SEO-Seiten (`apps/Company-OS`).
+- **HTMX:** Nur für einfache server-gerenderte Bereiche / Astro (nie mit React-State mischen).
+- **React Native (Expo):** iOS/Android-Apps mit geteilten Typen aus `@cnt/types`.
 
-## Sprache, Styling & HTML
+## Sprache, Daten & Styling
 
-| Technologie      | Rolle                          | Grundprinzip                                                                                              |
-| ---------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| **TypeScript**   | Typsichere Programmiersprache  | Feste Schemas & strikte Typen für stabilen, fehlerarmen Code                                              |
-| **Zod**          | Schema- & Laufzeit-Validierung | Prüft externe Daten (APIs, Webhooks, Formulare, JSON-Payloads) zur Laufzeit und liefert passende TS-Typen |
-| **JavaScript**   | Web-Logik                      | Nur für echte Anwendungslogik – nicht für Dinge, die natives HTML/CSS kann                                |
-| **Natives HTML** | Semantik & Basis-Interaktion   | Z. B. `<details>` / `<summary>` für aufklappbare Bereiche statt unnötigem JS                              |
-| **Tailwind CSS** | Utility-First Styling          | Schnelles, konsistentes Styling direkt an den Komponenten; Abstände über `gap` & `padding` statt `margin` |
+- **TypeScript:** Strikte Typen & feste Schemas (`strict: true`, kein `any`).
+- **Zod:** Schema- & Laufzeit-Validierung für APIs, Webhooks, Formulare, JSON-Payloads.
+- **Drizzle ORM:** 100 % TypeScript SQL-ORM; App-Tabellen-Präfixe (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`) für gemeinsame SQL-DB (PostgreSQL / Neon / Supabase).
+- **JavaScript / Natives HTML:** JS nur für echte Logik; Standard-UI nativ (`<details>`/`<summary>`).
+- **Tailwind CSS:** Utility-First Styling; `gap` & `padding` statt `margin`.
 
-## Tooling & Architektur
+## SDKs & Tooling
 
-| Werkzeug                 | Rolle                         | Standard                                                                                                                                                                                                       |
-| ------------------------ | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Monorepo**             | Repository-Architektur        | Alle Apps (`apps/`) und geteilter Code (`packages/`) in einem zentralen Repo                                                                                                                                   |
-| **pnpm**                 | Paketmanager                  | Immer `pnpm` statt `npm` (schneller, konsistente Workspaces)                                                                                                                                                   |
-| **Prettier**             | Code-Formatierung             | Automatische, einheitliche Formatierung im gesamten Repo                                                                                                                                                       |
-| **Bruno**                | API-Tests (vorgemerkt)        | Offline-first, Git-basiert (`bru`-Dateien & CLI) – einsetzen, sobald eigene APIs getestet werden                                                                                                               |
-| **Drizzle ORM**          | SQL-ORM (100 % TypeScript)    | Typsichere DB-Schemas ohne eigene Schema-Sprache; nutzt Tabellen-Präfixe pro App (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`) für eine gemeinsame SQL-Datenbank (z. B. PostgreSQL / Neon / Supabase) |
-| **`@vercel/sdk`**        | Auto-Deployment & Hosting-API | Programmatisches Anlegen von Vercel-Projekten, Env-Vars, Domains, Deployments sowie Live-Status & Build-Logs (v. a. für `apps/Flux`-Stores & Status-Dashboard; strikt `server-only` gekapselt)                 |
-| **Vercel AI SDK (`ai`)** | KI-Workflows in Apps          | Strukturierte KI-Ausgaben mit Zod (z. B. Produkttexte, Alt-Texte, CMS-/Store-Templates in `apps/Flux` & `apps/Connect`; modellunabhängig für Claude, Gemini, OpenAI)                                           |
+- **Monorepo & `pnpm`:** `apps/*` + `packages/*` in einem Workspace; immer `pnpm` statt `npm`.
+- **Prettier:** Auto-Formatierung (`package.json`-Config + `prettier-plugin-tailwindcss`).
+- **`@vercel/sdk`:** Programmatisches Auto-Deployment, Env-Vars, Domains, Status & Logs (`apps/Flux`, Status-Dashboard; strikt `server-only` gekapselt).
+- **Vercel AI SDK (`ai`):** Strukturierte KI-Ausgaben mit Zod (Texte, Alt-Texte, Templates in `Flux`/`Connect`; Claude/Gemini/OpenAI).
+- **Bruno (vorgemerkt):** Offline-first Git-API-Tests (`bru`-Dateien + CLI), sobald eigene APIs getestet werden.
