@@ -17,3 +17,4 @@
 - **Rohe Third-Party-`<script>` / schwere Embeds (YouTube, Maps, GTM)** → `@next/third-parties` (Lite-Embeds / optimiertes GTM).
 - **Manuelles Cloud-/DevOps-Setup (VPC, IAM, Kubernetes)** → Spezialisierte Managed-Dienste aus dem Tool Stack (`Vercel`, `Neon`/`Supabase`, `Clerk`, `UploadThing`).
 - **Google Analytics (GA4) / ungeprüfte Pakete & Easter Eggs** → DSGVO-konform **Plausible** / **PostHog (EU)** nutzen; Dependencies via `pnpm-lock.yaml` pinnen und keine Easter Eggs in Produktion.
+- **Unpooled DB-Connections in Serverless / lange Tasks im HTTP-Request** → Neon-/Supabase-Pooler nutzen; rechenintensive/lange Jobs (Video-Render, KI-Pipelines) über Background-Jobs/Queues mit Retries entkoppeln.
