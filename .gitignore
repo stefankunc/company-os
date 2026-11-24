@@ -19,6 +19,9 @@ coverage
 .env
 .env*.local
 
+# Lokale Tool-Junctions (z. B. .claude/skills -> .agents/skills)
+.claude/
+
 # OS & editor
 .DS_Store
 Thumbs.db
