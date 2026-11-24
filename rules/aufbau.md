@@ -70,6 +70,7 @@ C:\Users\Kunc GmbH\Documents\CNT\
 
 ## 6. Security & Data Access Layer (DAL)
 
+- **Drizzle ORM & App-Tabellen-Präfixe:** Datenbank-Schemas werden komplett in TypeScript mit **Drizzle ORM** definiert. Jede App nutzt einen eigenen Tabellen-Präfix via `tableCreator` (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`), sodass alle CNT-Apps bei Bedarf eine einzige SQL-Datenbank sauber ohne Tabellen-Kollisionen teilen können.
 - **Zentraler Data Access Layer (DAL):** Alle Datenbankabfragen einer App liegen gebündelt an einem Ort (z. B. `src/data/`) und sind ganz oben durch `import "server-only";` geschützt – ein versehentlicher Client-Import bricht den Build sofort ab.
 - **Nur geprüfte DTOs zurückgeben:** Niemals `SELECT *` oder rohe Datenbank-Objekte (mit Tokens, Hashes, internen Feldern) an Client Components durchreichen – der DAL liefert nur explizit erlaubte DTO-Felder zurück.
 - **Auth bei jedem Datenzugriff prüfen:** Berechtigungen und Auth-Cookies immer direkt im DAL prüfen, nicht nur einmal oben auf Seiten- oder Layout-Ebene.
