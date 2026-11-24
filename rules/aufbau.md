@@ -31,6 +31,7 @@ CNT/
 ## 4. Security & Data Access Layer (DAL)
 
 - **Drizzle + Präfixe:** Schemas in TS mit `tableCreator` (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`).
+- **Typ-Inferenz & Request-Deduplication:** Keine manuellen Doppel-Typen für DB/Schemas schreiben – immer direkt aus **Drizzle** (`$inferSelect`/`$inferInsert`) und **Zod** (`z.infer`) ableiten. Wiederholt aufgerufene DAL-Leseabfragen mit React `cache()` wrappen, um doppelte DB-Queries im selben Request zu vermeiden.
 - **Zentraler DAL (`src/data/`):** Oben `import "server-only";` (bricht Build bei Client-Import).
 - **Nur DTOs:** Nie `SELECT *` oder rohe DB-Objekte an Clients geben – nur explizit erlaubte Felder.
 - **Auth überall im DAL:** Cookies/Rechte bei jedem Datenzugriff prüfen, nicht nur auf Seiten-Ebene.
