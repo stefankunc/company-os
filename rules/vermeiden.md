@@ -16,3 +16,4 @@
 - **Mutationen beim RSC-Rendern / Auth nur in Seite** → Mutationen nur in Server Actions (`"use server"` + Zod); Auth bei jedem DAL-Zugriff prüfen.
 - **Rohe Third-Party-`<script>` / schwere Embeds (YouTube, Maps, GTM)** → `@next/third-parties` (Lite-Embeds / optimiertes GTM).
 - **Manuelles Cloud-/DevOps-Setup (VPC, IAM, Kubernetes)** → Spezialisierte Managed-Dienste aus dem Tool Stack (`Vercel`, `Neon`/`Supabase`, `Clerk`, `UploadThing`).
+- **Google Analytics (GA4) / ungeprüfte Pakete & Easter Eggs** → DSGVO-konform **Plausible** / **PostHog (EU)** nutzen; Dependencies via `pnpm-lock.yaml` pinnen und keine Easter Eggs in Produktion.
