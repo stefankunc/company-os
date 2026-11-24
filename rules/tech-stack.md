@@ -30,3 +30,4 @@
 - **Neon / Supabase (PostgreSQL):** Managed SQL-Datenbank für Drizzle ORM (mit App-Tabellen-Präfixen).
 - **Clerk** _(oder Better Auth self-hosted)_: Authentifizierung, Sessions & Nutzerverwaltung.
 - **UploadThing & Mux:** Datei-/Bild-Uploads (`UploadThing`) und Video-Streaming (`Mux`, bei Bedarf).
+- **Plausible & PostHog (EU-Cloud):** DSGVO-konforme Analytics – **Plausible** (cookiefrei für Landingpages wie `Company-OS`) und **PostHog EU** (Produkt-Analytics via Next.js-Rewrite-Proxy + typsicherem Server-Wrapper).
