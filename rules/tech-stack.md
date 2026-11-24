@@ -6,7 +6,7 @@
 - **React 19:** Wiederverwendbare UI-Bausteine in Next.js (`ref` direkt als Prop statt `forwardRef`; Form-/Mutations-States über `useActionState`, `useFormStatus` & `useOptimistic` statt manuellem `isLoading`-`useState`).
 - **Astro:** Statische/Content-First Landing Pages & SEO-Seiten (`apps/Company-OS`).
 - **HTMX:** Nur für einfache server-gerenderte Bereiche / Astro (nie mit React-State mischen).
-- **React Native (Expo):** Android- & iOS-Apps mit geteilten Typen aus `@cnt/types`; immer **Expo Prebuild (CNG / Config Plugins) + Dev Client + EAS Cloud-Builds** (kein manuelles `android/`/`ios/`-Ejecting, sauber auf Windows entwickelbar).
+- **React Native (Expo):** Android- & iOS-Apps mit geteilten Typen aus `@cnt/types`; immer **Expo Router + NativeWind + Expo Prebuild (CNG / Config Plugins) + Dev Client + EAS Cloud-Builds** (kein manuelles `android/`/`ios/`-Ejecting, sauber auf Windows entwickelbar).
 
 ## Sprache, Daten & Styling
 
