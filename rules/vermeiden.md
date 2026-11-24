@@ -11,7 +11,7 @@
 - **Manuelles Formatieren** → Prettier (`pnpm format`).
 - **Ganze Demo-Seiten/Repos kopieren** → Nur benötigte Komponente/Block (`rules/ui-components.md`).
 - **Pauschales `"use client"` / `getServerSideProps`** → RSC-First; `"use client"` nur in kleinen Inseln.
-- **Ungekapselte Fremd-SDKs / ungeprüftes JSON** → Typsichere Wrapper + **Zod**-Laufzeitvalidierung.
+- **Ungekapselte Fremd-SDKs, rohes `fetch()` ohne Checks & ungeprüftes JSON** → Typsichere Wrapper + **Zod**-Laufzeitvalidierung; bei `fetch()` immer `res.ok` prüfen und `AbortSignal.timeout()` setzen.
 - **`SELECT *` / rohe DB-Objekte an Client** → DAL (`src/data/` + `import "server-only";`) + explizite DTOs.
 - **Mutationen beim RSC-Rendern / Auth nur in Seite** → Mutationen nur in Server Actions (`"use server"` + Zod); Auth bei jedem DAL-Zugriff prüfen.
 - **Rohe Third-Party-`<script>` / schwere Embeds (YouTube, Maps, GTM)** → `@next/third-parties` (Lite-Embeds / optimiertes GTM).
