@@ -20,3 +20,8 @@
 4. Dependencies (`lucide-react`, `@ark-ui/react`, Radix/Base UI) mit `pnpm` installieren, Kompatibilität prüfen, vorhandene Basis-Komponenten wiederverwenden.
 5. Imports, Theme & Styles ans CNT-Projekt anpassen; Lizenz-/Copyright-Hinweise erhalten (Bezahlinhalte nur mit Lizenz).
 6. Prettier laufen lassen, Build & Dev-Server testen, Fehler autonom beheben.
+
+## Barrierefreiheit (a11y)
+
+- **Barrierefreie Primitives:** Interaktive UI-Muster (`Dialog`, `Dropdown`, `Tabs`, `Popover`, `Tooltip`) immer über `shadcn/ui`-Primitives (Radix / Ark UI) statt Eigenbau-`<div>`-Lösungen umsetzen.
+- **Semantik, Tastatur & Fokus:** Echtes `<button>`/`<a>` statt `<div onClick>`, verknüpfte `<label>` für Inputs, `aria-label` für Icon-Buttons, sichtbare Fokus-States (`focus-visible`) und WCAG-Kontrast ≥ 4,5:1 (`rules/fonts.md`).
