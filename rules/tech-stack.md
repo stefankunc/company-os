@@ -32,3 +32,4 @@
 - **Clerk** _(oder Better Auth self-hosted)_: Authentifizierung, Sessions & Nutzerverwaltung.
 - **UploadThing & Mux:** Datei-/Bild-Uploads (`UploadThing`) und Video-Streaming (`Mux`, bei Bedarf).
 - **Plausible & PostHog (EU-Cloud):** DSGVO-konforme Analytics – **Plausible** (cookiefrei für Landingpages wie `Company-OS`) und **PostHog EU** (Produkt-Analytics via Next.js-Rewrite-Proxy + typsicherem Server-Wrapper).
+- **Resend & Tally.so:** **Resend** für Transaktionsmails & DSGVO-Wartelisten (Double-Opt-In + `<app>_waitlist`-Tabelle in Drizzle); **Tally.so** (EU/DSGVO) für längere Umfragen, Feedback & Beta-Bewerbungen (kein Google Forms).
