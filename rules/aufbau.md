@@ -28,6 +28,7 @@ C:\Users\Kunc GmbH\Documents\CNT\
 │   ├── aufbau.md              # Monorepo-Struktur & Architektur-Prinzipien
 │   ├── vermeiden.md           # Verbindliche No-Gos & Alternativen
 │   ├── ui-components.md       # UI-Quellen, Speicherorte und Integration
+│   ├── fonts.md               # Standard-Schriftarten (Geist & Geist Mono)
 │   ├── video-production.md    # Headless-Videoproduktion (Remotion & HyperFrames in apps/Analysis)
 │   └── code-formatting.md     # Prettier-Regeln
 │

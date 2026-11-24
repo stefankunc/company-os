@@ -16,6 +16,7 @@ Lies vor jeder Implementierung, Architektur-Entscheidung oder UI-Änderung die p
 - **Aufbau & Struktur:** `C:\Users\Kunc GmbH\Documents\CNT\rules\aufbau.md`
 - **Vermeiden (No-Gos):** `C:\Users\Kunc GmbH\Documents\CNT\rules\vermeiden.md`
 - **UI-Komponenten & Quellen:** `C:\Users\Kunc GmbH\Documents\CNT\rules\ui-components.md`
+- **Fonts & Typografie:** `C:\Users\Kunc GmbH\Documents\CNT\rules\fonts.md`
 - **Videoproduktion (Headless):** `C:\Users\Kunc GmbH\Documents\CNT\rules\video-production.md`
 - **Code-Formatierung (Prettier):** `C:\Users\Kunc GmbH\Documents\CNT\rules\code-formatting.md`
 
