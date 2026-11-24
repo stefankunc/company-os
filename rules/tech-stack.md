@@ -23,7 +23,7 @@
 - **`@vercel/sdk`:** Programmatisches Auto-Deployment, Env-Vars, Domains, Status & Logs (`apps/Flux`, Status-Dashboard; strikt `server-only` gekapselt).
 - **Vercel AI SDK (`ai`):** Strukturierte KI-Ausgaben mit Zod (Texte, Alt-Texte, Templates in `Flux`/`Connect`; Claude/Gemini/OpenAI).
 - **Bruno (vorgemerkt):** Offline-first Git-API-Tests (`bru`-Dateien + CLI), sobald eigene APIs getestet werden.
-- **Testing (`Vitest` & `Playwright`):** **Vitest** für schnelle Unit-/Logik-/DAL-Tests und **Playwright** für End-to-End-Tests (kein Jest/Enzyme).
+- **Testing (`Vitest` & `Playwright`):** Pragmatisch ohne 100 %-Coverage-Zwang — **Vitest** für komplexe Logik, Parser, Berechnungen & kritische DAL-/Zod-Regeln; **Playwright** für kritische E2E-Flows (kein Jest/Enzyme).
 
 ## Plattform & Infrastruktur (Tool Stack)
 
