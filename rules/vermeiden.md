@@ -22,3 +22,4 @@
 - **Pauschales `useMemo` / `useCallback` / `React.memo`** → **React Compiler** (`reactCompiler: true` in Next.js) aktivieren; manuelles Memoizing nur bei gemessenem Engpass.
 - **100 %-Coverage-Zwang / Mock-Unit-Tests für triviales UI & CRUD** → Pragmatisch testen: **Vitest** für komplexe Logik/Parser/DAL-Regeln, **Playwright** für kritische End-to-End-Flows.
 - **Geschäftslogik/Auth in DB-Stored-Procedures, Triggern oder direktem Browser-DB-Zugriff (komplexe RLS)** → DB hält nur Daten; Auth, Regeln & Workflows liegen typsicher in TypeScript im DAL (`src/data/`) und in Server Actions.
+- **Verschachtelte Ternaries & `{count && ...}` in JSX** → Early Returns (`if (!x) return null`), kleine Unterkomponenten & explizite Booleans (`items.length > 0 ? ... : null`) nutzen (verhindert `0`-Rendering & React-Native-Crashes).
