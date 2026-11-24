@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "react", "oxc"],
+  "jsPlugins": ["./packages/oxlint-plugin-cnt/index.ts"],
+  "ignorePatterns": [
+    "node_modules/**",
+    ".next/**",
+    "dist/**",
+    "apps/**",
+    "packages/ui/src/components/shadcn/elements/**",
+    "packages/ui/src/components/shadcn/studio/**"
+  ],
+  "rules": {
+    "typescript/no-explicit-any": "error",
+    "cnt/no-sparkles-icon": "error",
+    "cnt/no-manual-memo": "error",
+    "cnt/no-test-skip-or-only": "error",
+    "cnt/no-raw-process-env": "error",
+    "cnt/no-stub-slop": "error"
+  }
+}

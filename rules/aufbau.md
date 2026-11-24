@@ -7,7 +7,9 @@ CNT/
 ├── apps/ (Company-OS, Connect, Hyper, Analysis, Spark, Flux)   # lokal, nicht in company-os Git
 ├── packages/
 │   ├── ui/src/components/shadcn/{elements, editable, studio}   # @cnt/ui
-│   └── types/                                                  # @cnt/types
+│   ├── types/                                                  # @cnt/types
+│   ├── oxlint-plugin-cnt/                                      # @cnt/oxlint-plugin (eigene AST-Anti-Slop-Regeln)
+│   └── factory/                                                # @cnt/factory (PDF→PRD, Worktrees, Ralph-Loop, Council, Visual Hill-Climb)
 ├── .agents/skills/ (code-review, next-rsc-audit, drizzle-pg-ops, frontend-design) # Repo-Skills für alle Agents
 ├── rules/ (tech-stack, aufbau, vermeiden, ui-components, fonts, video-production, code-formatting, model-selection)
 └── package.json, pnpm-workspace.yaml, tsconfig.base.json, AGENTS.md, Claude.md

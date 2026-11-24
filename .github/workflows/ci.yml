@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   verify:
-    name: Format & Typecheck
+    name: Verify (Format, Oxlint, Typecheck, Knip)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,14 +24,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Format check
-        run: pnpm format:check
-
-      - name: Typecheck
-        run: pnpm typecheck
+      - name: Verify quality gates
+        run: pnpm verify

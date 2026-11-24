@@ -10,11 +10,17 @@
     "prepare": "git config core.hooksPath .githooks || true",
     "dev": "pnpm -r --parallel --if-present dev",
     "build": "pnpm -r --if-present build",
-    "typecheck": "pnpm -r --if-present typecheck",
+    "typecheck": "pnpm --filter \"./packages/*\" --if-present typecheck",
+    "lint": "oxlint",
+    "knip": "knip",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "factory": "node packages/factory/src/cli.ts",
+    "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm knip"
   },
   "devDependencies": {
+    "knip": "^6.48.0",
+    "oxlint": "^1.0.0",
     "prettier": "^3.10.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "^7.0.2"
