@@ -15,6 +15,7 @@ CNT/
 ## 2. Komponenten, RSC & Daten
 
 - **Modular & getrennt:** Kleine `.tsx`-UI-Komponenten; Geschäftslogik/APIs in `.ts`-Dateien oder Custom Hooks. Shared UI → `packages/ui`, App-UI → `apps/<App>/src/components/ui`, Shared Types → `packages/types`.
+- **Colocation & flache Abstraktionen:** Feature-nah organisieren statt striktem MVC (UI, Tailwind-Styles & Feature-Logik nah beieinander; DB-Zugriffe bleiben sauber im DAL). Reine Datenstrukturen + zustandslose Funktionen statt tiefer OOP-Klassen-Hierarchien (max. 1 Abstraktionsebene).
 - **RSC-First (Next.js App Router):** Standardmäßig Server Components (`async/await` auf Server). `"use client"` nur tief in kleinen interaktiven Inseln (`useState`, Events, `Editable`).
 - **Boundaries:** Client Components importieren nie Server Components direkt – immer als `children` oder Prop übergeben.
 - **Streaming & PPR:** Langsame/dynamische Server Components (`cookies()`, `headers()`, Nutzer-/Live-Daten) in `<Suspense fallback={...}>` kapseln, nie oben im statischen Layout – Hülle lädt sofort, Dynamik streamt nach.
