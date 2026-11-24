@@ -2,7 +2,7 @@
 
 - **`npm` / `yarn`** → Immer `pnpm`.
 - **`margin` für Layout-Abstände** → `gap` im Parent, `padding` oder Spacer (kein Margin-Collapse).
-- **React `useEffect`-Endlosschleifen & Daten-Fetching in `useEffect` + `useState`** → Dependency-Array minimal halten; Server-Daten via **RSC** laden, echten Client-Async-State (Polling, Live-Daten, **Expo**) mit **`@tanstack/react-query`** (verhindert Race Conditions & kaputte Loading-States).
+- **React `useEffect`-Endlosschleifen, abgeleiteter State & Daten-Fetching in `useEffect` + `useState`** → Abgeleitete Werte direkt im Render berechnen (nie per extra `useState` + `useEffect`); Dependency-Array minimal halten; Server-Daten via **RSC** laden, echten Client-Async-State (Polling, Live-Daten, **Expo**) mit **`@tanstack/react-query`** (verhindert Race Conditions & kaputte Loading-States).
 - **`Promise.all()` für mehrere APIs/Börsen** → `Promise.allSettled()` (ein Ausfall darf nicht alles verwerfen).
 - **JS für Standard-HTML** → Natives HTML (`<details>`/`<summary>`).
 - **Ungetyptes JS / `any`** → Strikte TypeScript-Typen & feste Schemas.
