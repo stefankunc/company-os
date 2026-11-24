@@ -46,3 +46,4 @@ CNT/
 
 - **`stefankunc/company-os` (privat):** `Claude.md`, `rules/`, `packages/ui`, `packages/types`, Submodules (`elements/`, `studio/`), Root-Configs.
 - **App-Repos (je privat):** `apps/` bleibt in `.gitignore`; jede App bekommt ihr eigenes privates Repo, sobald dort Code entsteht. Lokal trotzdem voll über `pnpm-workspace.yaml` verbunden.
+- **Kleine, atomare PRs (Graphite Stacking):** Änderungen in kleine, fokussierte PRs aufteilen und über Graphite (`gt`) stacken – keine monolithischen 500+-Zeilen-PRs.
