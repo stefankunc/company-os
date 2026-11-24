@@ -20,6 +20,8 @@ importers:
 
   apps/Analysis: {}
 
+  apps/Company-OS: {}
+
   packages/types: {}
 
   packages/ui:

@@ -2,6 +2,7 @@
 
 Das CNT-Projekt ist ein `pnpm`-Monorepo mit den Apps:
 
+- `apps/Company-OS` _(CNT Landingpage & interaktives Portfolio – Astro)_
 - `apps/Connect`
 - `apps/Hyper`
 - `apps/Analysis`
