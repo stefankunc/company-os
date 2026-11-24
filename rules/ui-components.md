@@ -29,3 +29,7 @@
 ## Styling & Varianten
 
 - **`cn()` & Varianten (`cva`):** Dynamische oder überschreibbare Tailwind-Klassen immer über `cn()` (`clsx` + `tailwind-merge`) mergen – nie per Template-String oder nacktem `clsx` (verhindert CSS-Spezifitäts-Bugs). Komponenten-Varianten typsicher mit `cva` definieren; wenn Ad-hoc-Overrides verboten sein sollen, `className`-Prop weglassen.
+
+## UX-Konventionen
+
+- **Bekannte Form-Signale wahren:** Checkboxen bleiben **quadratisch** (Mehrfachauswahl, nie `rounded-full`), Radio-Buttons bleiben **rund** (Einzelauswahl). Visuelle Effekte oder Styling dürfen nie funktionale Standard-Konventionen brechen.
