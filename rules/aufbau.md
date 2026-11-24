@@ -33,7 +33,7 @@ CNT/
 - **Zentraler DAL (`src/data/`):** Oben `import "server-only";` (bricht Build bei Client-Import).
 - **Nur DTOs:** Nie `SELECT *` oder rohe DB-Objekte an Clients geben – nur explizit erlaubte Felder.
 - **Auth überall im DAL:** Cookies/Rechte bei jedem Datenzugriff prüfen, nicht nur auf Seiten-Ebene.
-- **Server Actions (`"use server"`):** Secrets erst in der Action laden, IDs via `.bind()`, Inputs mit **Zod** prüfen und nach Mutationen direkt `revalidatePath()`/`revalidateTag()` aufrufen (statt extra `router.refresh()`). Keine Mutationen beim RSC-Rendern.
+- **Server Actions (`"use server"`):** Secrets erst in der Action laden, IDs via `.bind()`, Inputs mit **Zod** (bei vielen geschützten Actions mit `next-safe-action`) prüfen und nach Mutationen direkt `revalidatePath()`/`revalidateTag()` aufrufen (statt extra `router.refresh()`). Keine Mutationen beim RSC-Rendern.
 
 ## 5. GitHub-Repo-Aufteilung
 
