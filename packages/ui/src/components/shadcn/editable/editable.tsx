@@ -7,8 +7,8 @@ import {
   useEditable,
   useEditableContext,
 } from "@ark-ui/react/editable";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { cn } from "../../../lib/utils";
+import { buttonVariants } from "../../ui/button";
 
 // 1. Editable (Root)
 export interface EditableProps extends React.ComponentPropsWithoutRef<typeof ArkEditable.Root> {
