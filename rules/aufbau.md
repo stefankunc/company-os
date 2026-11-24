@@ -39,6 +39,7 @@ CNT/
 - **Server Actions (`"use server"`):** Secrets erst in der Action laden, IDs via `.bind()`, Inputs mit **Zod** (bei vielen geschützten Actions mit `next-safe-action`) prüfen und nach Mutationen direkt `revalidatePath()`/`revalidateTag()` aufrufen (statt extra `router.refresh()`). Keine Mutationen beim RSC-Rendern.
 - **Region & Compute:** Next.js Node.js-Compute und SQL-Datenbank (Neon/Supabase) immer in **derselben Region** (z. B. EU/Frankfurt `fra1`) platzieren. Edge/CDN nur für statische Assets, Redirects, Header & leichte Middleware _ohne_ DB-Roundtrips.
 - **Connection Pooling & Background-Jobs:** In Serverless-Umgebungen (Vercel) immer den DB-Connection-Pooler (Neon/Supabase HTTP/PgBouncer) nutzen, um Connection-Limits nicht zu sprengen. Produktiv-DBs für Kundendaten nicht auf Free-Tier/Scale-to-Zero betreiben (Always-On + automatische Backups/PITR). Lange oder rechenintensive Tasks (z. B. Video-Render, KI-Pipelines) aus HTTP-Requests auslagern und über zuverlässige Background-Jobs/Queues mit Retries ausführen.
+- **Trust & Safety von Tag 1:** Öffentliche Endpunkte, Formulare, Uploads & Benachrichtigungen immer mit **Rate-Limiting** und Spam-/Missbrauchsschutz absichern. Bei nutzergenerierten Inhalten (UGC) von Anfang an **Soft-Delete / Audit-Logs** (gelöschte Inhalte bleiben für Moderation nachvollziehbar) und niedrigschwellige **1-Klick-Melde-Workflows** vorsehen.
 
 ## 5. GitHub-Repo-Aufteilung
 
