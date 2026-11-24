@@ -23,3 +23,10 @@
 - **`@vercel/sdk`:** Programmatisches Auto-Deployment, Env-Vars, Domains, Status & Logs (`apps/Flux`, Status-Dashboard; strikt `server-only` gekapselt).
 - **Vercel AI SDK (`ai`):** Strukturierte KI-Ausgaben mit Zod (Texte, Alt-Texte, Templates in `Flux`/`Connect`; Claude/Gemini/OpenAI).
 - **Bruno (vorgemerkt):** Offline-first Git-API-Tests (`bru`-Dateien + CLI), sobald eigene APIs getestet werden.
+
+## Plattform & Infrastruktur (Tool Stack)
+
+- **Vercel:** Standard-Hosting, Auto-Deployments & Preview-URLs (inkl. `@vercel/sdk`).
+- **Neon / Supabase (PostgreSQL):** Managed SQL-Datenbank für Drizzle ORM (mit App-Tabellen-Präfixen).
+- **Clerk** _(oder Better Auth self-hosted)_: Authentifizierung, Sessions & Nutzerverwaltung.
+- **UploadThing & Mux:** Datei-/Bild-Uploads (`UploadThing`) und Video-Streaming (`Mux`, bei Bedarf).
