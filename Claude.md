@@ -29,6 +29,7 @@ Lies vor jeder Implementierung, Architektur-Entscheidung oder UI-Änderung die p
    - Lokale `Editable`-Backup-Quelle (falls offline benötigt): `C:\Users\Kunc GmbH\Documents\Tools Connect\ShadCN\components_ui`
 4. **Qualität & Abschluss:** Code automatisch mit Prettier formatieren (`rules/code-formatting.md`), Imports/Theme/Styles anpassen, Build & Dev-Server testen und Fehler autonom beheben.
 5. **Videos automatisch & headless erstellen:** Wenn ein Video erstellt werden soll, nutze `apps/Analysis` (`tools/Videos/remotion`, `tools/Videos/hyperframes`, `tools/Videos/Vorlagen`, `skills/video-production/SKILL.md`) gemäß `rules/video-production.md`. **Niemals** `localhost`-Studio/Preview öffnen — komplett unsichtbar per CLI rendern und direkt die fertige Videodatei liefern.
+6. **Texte radikal kürzen:** PR-Beschreibungen, Commits und Projektbeschreibungen ohne Füllwörter und Einleitungen – nur die Kernbotschaft (max. 1–3 knappe Zeilen).
 
 ## Git & Pull-Request-Regel (`stefankunc/company-os` + Graphite)
 
