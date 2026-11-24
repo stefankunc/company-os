@@ -7,9 +7,10 @@ description: Guardrail für Drizzle ORM & PostgreSQL Schema-Design, Indizes, Pag
 
 Prüfe jede Schema-Änderung oder DB-Migration gegen diese 6 Pflichtregeln:
 
-1. **Tabellen-Präfix & Primärschlüssel:**
+1. **Tabellen-Präfix, Primärschlüssel & Nullability:**
    - Immer App-Präfix via `tableCreator` (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`).
    - Primärschlüssel: zeitlich sortierbare **UUID v7** (nativer Postgres-`uuid`-Typ, nie `varchar`/`text`) oder `bigint`/`identity` — keine zufälligen UUID v4.
+   - Foreign Keys & Auth-Spalten (`userId`, `orgId`) strikt `.notNull()` definieren (nie heimlich nullable machen, um Validierungsfehler zu umgehen).
 2. **Kein Boolean-Chaos (Timestamps & Status):**
    - Zeitliche Ereignisse als nullable Timestamp (`confirmedAt`, `deletedAt`, `verifiedAt`) statt `boolean` (verhindert Split-Brain).
    - Mehrstufige Zustände als einzelnes Status-Feld (`pgEnum` / String-Union) statt mehrerer paralleler Booleans (`isPending`, `isCompleted`, `isFailed`).
