@@ -7,11 +7,12 @@ Alle CNT-Apps und geteilten Pakete liegen gemeinsam in einem Repository (`pnpm` 
 ```txt
 C:\Users\Kunc GmbH\Documents\CNT\
 ├── apps\
+│   ├── Company-OS\            # CNT Landingpage & interaktives Portfolio (Astro)
 │   ├── Connect\               # Connect-App
 │   ├── Hyper\                 # Hyper-App
-│   ├── Analysis\              # Analysis-App
+│   ├── Analysis\              # Analysis-App (Headless-Video-Studio)
 │   ├── Spark\                 # Spark-App
-│   └── Flux\                  # Flux-App
+│   └── Flux\                  # Flux-App (Store-Plattform)
 │
 ├── packages\
 │   ├── ui\                    # Geteilte UI-Komponenten (Tailwind + shadcn Basis)
