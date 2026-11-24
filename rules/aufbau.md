@@ -19,6 +19,7 @@ CNT/
 - **RSC-First (Next.js App Router):** Standardmäßig Server Components (`async/await` auf Server). `"use client"` nur tief in kleinen interaktiven Inseln (`useState`, Events, `Editable`).
 - **Boundaries:** Client Components importieren nie Server Components direkt – immer als `children` oder Prop übergeben.
 - **Streaming & PPR:** Langsame/dynamische Server Components (`cookies()`, `headers()`, Nutzer-/Live-Daten) in `<Suspense fallback={...}>` kapseln, nie oben im statischen Layout – Hülle lädt sofort, Dynamik streamt nach.
+- **URL-State (`searchParams`):** Filter, Suche, Sortierung & Pagination gehören typsicher (via **Zod**, bei Bedarf `nuqs`) in die URL statt in lokales `useState` → reload-/teilbar und direkt in RSC lesbar.
 - **Externe SDKs/APIs:** Schwach getypte Drittanbieter-SDKs einmalig hinter typsicheren Wrappern kapseln; externe JSON-Payloads mit **Zod** validieren.
 - **Kein Config Hell:** Tools mit guten Defaults; Configs wo möglich in `package.json`; Root schlank halten.
 
