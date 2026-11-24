@@ -15,3 +15,4 @@
 - **`SELECT *` / rohe DB-Objekte an Client** → DAL (`src/data/` + `import "server-only";`) + explizite DTOs.
 - **Mutationen beim RSC-Rendern / Auth nur in Seite** → Mutationen nur in Server Actions (`"use server"` + Zod); Auth bei jedem DAL-Zugriff prüfen.
 - **Rohe Third-Party-`<script>` / schwere Embeds (YouTube, Maps, GTM)** → `@next/third-parties` (Lite-Embeds / optimiertes GTM).
+- **Manuelles Cloud-/DevOps-Setup (VPC, IAM, Kubernetes)** → Spezialisierte Managed-Dienste aus dem Tool Stack (`Vercel`, `Neon`/`Supabase`, `Clerk`, `UploadThing`).
