@@ -20,3 +20,4 @@
 - **Unpooled DB-Connections in Serverless / lange Tasks im HTTP-Request** → Neon-/Supabase-Pooler nutzen; rechenintensive/lange Jobs (Video-Render, KI-Pipelines) über Background-Jobs/Queues mit Retries entkoppeln.
 - **Veraltete Test-/Build-Tools (`Jest`, `Enzyme`, `Webpack`)** → **Vitest** (Unit/Logik) & **Playwright** (E2E) sowie die nativen Bundler von Next.js/Astro nutzen.
 - **Pauschales `useMemo` / `useCallback` / `React.memo`** → **React Compiler** (`reactCompiler: true` in Next.js) aktivieren; manuelles Memoizing nur bei gemessenem Engpass.
+- **100 %-Coverage-Zwang / Mock-Unit-Tests für triviales UI & CRUD** → Pragmatisch testen: **Vitest** für komplexe Logik/Parser/DAL-Regeln, **Playwright** für kritische End-to-End-Flows.
