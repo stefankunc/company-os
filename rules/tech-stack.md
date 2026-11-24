@@ -14,7 +14,7 @@
 - **Zod:** Schema- & Laufzeit-Validierung für APIs, Webhooks, Formulare, JSON-Payloads.
 - **Drizzle ORM:** 100 % TypeScript SQL-ORM; App-Tabellen-Präfixe (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`) für gemeinsame SQL-DB (PostgreSQL / Neon / Supabase).
 - **JavaScript / Natives HTML:** JS nur für echte Logik; Standard-UI nativ (`<details>`/`<summary>`).
-- **Tailwind CSS:** Utility-First Styling; `gap` & `padding` statt `margin`.
+- **Tailwind CSS v4:** Utility-First Styling (CSS-First via `@import "tailwindcss";` & `@theme`, keine `tailwind.config.js` / kein `autoprefixer`); `gap` & `padding` statt `margin`.
 
 ## SDKs & Tooling
 
