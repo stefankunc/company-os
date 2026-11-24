@@ -16,6 +16,7 @@
 - **Architektur / Security / harte Logik-Bugs** (DAL, Billing, Auth) → Stärkstes Reasoning-Modell (High-Thinking nur für wirklich komplexe Logik, nie für Routine-Tasks).
 - **Große Codebases / Recherche / Multimodal** (`Connect`, Docs, Video/PDF) → Stärkstes Long-Context-/Multimodal-Modell (z. B. Gemini-Linie).
 - **Routine-Edits / Refactoring / Docs / Subagents** → Schnellstes zuverlässiges Standard-/Flash-Modell mit präzisen Tool-Calls.
+- **Code-Review (Cross-Model via `/code-review`)** → Immer ein **anderes KI-Modell** im neuen Chat reviewen lassen (fertiger Copy-Paste-Prompt über `/code-review`, kein extra SaaS-Tool).
 
 ## 3. Empfehlung & Eigene Meinung (Overrides)
 
