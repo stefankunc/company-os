@@ -34,6 +34,7 @@ CNT/
 - **Nur DTOs:** Nie `SELECT *` oder rohe DB-Objekte an Clients geben – nur explizit erlaubte Felder.
 - **Auth überall im DAL:** Cookies/Rechte bei jedem Datenzugriff prüfen, nicht nur auf Seiten-Ebene.
 - **Server Actions (`"use server"`):** Secrets erst in der Action laden, IDs via `.bind()`, Inputs mit **Zod** (bei vielen geschützten Actions mit `next-safe-action`) prüfen und nach Mutationen direkt `revalidatePath()`/`revalidateTag()` aufrufen (statt extra `router.refresh()`). Keine Mutationen beim RSC-Rendern.
+- **Region & Compute:** Next.js Node.js-Compute und SQL-Datenbank (Neon/Supabase) immer in **derselben Region** (z. B. EU/Frankfurt `fra1`) platzieren. Edge/CDN nur für statische Assets, Redirects, Header & leichte Middleware _ohne_ DB-Roundtrips.
 
 ## 5. GitHub-Repo-Aufteilung
 
