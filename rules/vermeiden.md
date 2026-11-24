@@ -21,3 +21,4 @@
 - **Veraltete Test-/Build-Tools (`Jest`, `Enzyme`, `Webpack`)** → **Vitest** (Unit/Logik) & **Playwright** (E2E) sowie die nativen Bundler von Next.js/Astro nutzen.
 - **Pauschales `useMemo` / `useCallback` / `React.memo`** → **React Compiler** (`reactCompiler: true` in Next.js) aktivieren; manuelles Memoizing nur bei gemessenem Engpass.
 - **100 %-Coverage-Zwang / Mock-Unit-Tests für triviales UI & CRUD** → Pragmatisch testen: **Vitest** für komplexe Logik/Parser/DAL-Regeln, **Playwright** für kritische End-to-End-Flows.
+- **Geschäftslogik/Auth in DB-Stored-Procedures, Triggern oder direktem Browser-DB-Zugriff (komplexe RLS)** → DB hält nur Daten; Auth, Regeln & Workflows liegen typsicher in TypeScript im DAL (`src/data/`) und in Server Actions.
