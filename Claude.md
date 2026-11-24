@@ -1,42 +1,28 @@
-# CNT – Projektregeln (`Claude.md`)
+# CNT Monorepo (`Claude.md`)
 
-Das CNT-Projekt ist ein `pnpm`-Monorepo mit den Apps:
+`pnpm`-Monorepo (`C:\Users\Kunc GmbH\Documents\CNT`). Apps: `Company-OS` (Astro-Portfolio), `Connect`, `Hyper`, `Analysis` (Video-Studio), `Spark`, `Flux`.
 
-- `apps/Company-OS` _(CNT Landingpage & interaktives Portfolio – Astro)_
-- `apps/Connect`
-- `apps/Hyper`
-- `apps/Analysis`
-- `apps/Spark`
-- `apps/Flux`
+## Regel-Dateien (bedarfsgerecht lesen)
 
-## Verbindliche Regel-Dateien
+- `rules/tech-stack.md` – Frameworks, DB, SDKs, Tooling
+- `rules/aufbau.md` – Struktur, RSC/PPR, DAL/Security, Repo-Aufteilung
+- `rules/vermeiden.md` – Verbindliche No-Gos
+- `rules/ui-components.md` – UI-Quellen, CLI/Browser, Speicherorte
+- `rules/fonts.md` – Geist & Geist Mono
+- `rules/video-production.md` – Headless-Videos in `apps/Analysis`
+- `rules/code-formatting.md` – Prettier
 
-Lies vor jeder Implementierung, Architektur-Entscheidung oder UI-Änderung die passende Regel-Datei in `C:\Users\Kunc GmbH\Documents\CNT\rules\` und befolge sie automatisch:
+## Kernregeln (immer aktiv)
 
-- **Tech Stack:** `C:\Users\Kunc GmbH\Documents\CNT\rules\tech-stack.md`
-- **Aufbau & Struktur:** `C:\Users\Kunc GmbH\Documents\CNT\rules\aufbau.md`
-- **Vermeiden (No-Gos):** `C:\Users\Kunc GmbH\Documents\CNT\rules\vermeiden.md`
-- **UI-Komponenten & Quellen:** `C:\Users\Kunc GmbH\Documents\CNT\rules\ui-components.md`
-- **Fonts & Typografie:** `C:\Users\Kunc GmbH\Documents\CNT\rules\fonts.md`
-- **Videoproduktion (Headless):** `C:\Users\Kunc GmbH\Documents\CNT\rules\video-production.md`
-- **Code-Formatierung (Prettier):** `C:\Users\Kunc GmbH\Documents\CNT\rules\code-formatting.md`
+1. **Stack:** Next.js (App Router, RSC-First, `"use client"` nur für kleine Inseln), React, Astro (+ opt. HTMX), Expo, strict TypeScript (kein `any`), Zod, Tailwind CSS, Drizzle ORM, immer `pnpm`.
+2. **Code & Layout:** Komponenten klein halten, Logik in `.ts`/Hooks trennen. Abstände via `gap`/`padding`/Spacer (kein `margin`). Natives HTML (`<details>`/`<summary>`) vor JS.
+3. **UI:** Lokal prüfen → `ui.shadcn.com` → `shadcn.io` → `shadcnstudio.com` → bevorzugt CLI, Ablage laut `rules/ui-components.md`. Offline-Backup `Editable`: `C:\Users\Kunc GmbH\Documents\Tools Connect\ShadCN\components_ui`.
+4. **Videos:** Über `apps/Analysis` (Remotion/HyperFrames + `Vorlagen/`) – **strikt headless**, nie `localhost`/Studio öffnen, fertige Datei aus `outputs/` liefern.
+5. **Qualität & Kürze:** `pnpm format:check` + `pnpm typecheck` vor Commit. PRs, Commits & Beschreibungen radikal kurz (1–3 Zeilen, null Füllwörter).
 
-## Kurz-Checkliste für jede Aufgabe
+## Git & Graphite (`stefankunc/company-os`)
 
-1. **Stack & Struktur:** Next.js (App Router, React Server Components als Standard – `"use client"` nur für kleine interaktive Inseln) + React (Web-Apps), Astro (+ optional HTMX) für Landing Pages, React Native/Expo (Mobile), striktes TypeScript (keine `any`-Typen), Tailwind CSS, immer `pnpm` statt `npm`. Komponenten klein halten und Geschäftslogik sauber von der UI trennen (eigene `.ts`-Module / Custom Hooks statt alles in `.tsx`).
-2. **Layout & HTML:** Abstände über `gap` im Elternelement, `padding` oder Spacer statt `margin`. Natives HTML (z. B. `<details>`/`<summary>`) vor JavaScript bevorzugen.
-3. **UI-Komponenten & Blöcke:** Zuerst lokal prüfen, dann im Browser in Reihenfolge `https://ui.shadcn.com/` → `https://www.shadcn.io/` → `https://shadcnstudio.com/` prüfen, bevorzugt per CLI installieren und gemäß `rules/ui-components.md` ablegen (`packages/ui/src/components/shadcn/` für geteilte Komponenten, `apps/<App>/src/components/ui/` für App-spezifische).
-   - Lokale `Editable`-Backup-Quelle (falls offline benötigt): `C:\Users\Kunc GmbH\Documents\Tools Connect\ShadCN\components_ui`
-4. **Qualität & Abschluss:** Code automatisch mit Prettier formatieren (`rules/code-formatting.md`), Imports/Theme/Styles anpassen, Build & Dev-Server testen und Fehler autonom beheben.
-5. **Videos automatisch & headless erstellen:** Wenn ein Video erstellt werden soll, nutze `apps/Analysis` (`tools/Videos/remotion`, `tools/Videos/hyperframes`, `tools/Videos/Vorlagen`, `skills/video-production/SKILL.md`) gemäß `rules/video-production.md`. **Niemals** `localhost`-Studio/Preview öffnen — komplett unsichtbar per CLI rendern und direkt die fertige Videodatei liefern.
-6. **Texte radikal kürzen:** PR-Beschreibungen, Commits und Projektbeschreibungen ohne Füllwörter und Einleitungen – nur die Kernbotschaft (max. 1–3 knappe Zeilen).
-
-## Git & Pull-Request-Regel (`stefankunc/company-os` + Graphite)
-
-Jede Änderung in der lokalen Version wird sauber über einen **neuen Pull Request (PR)** auf GitHub gespeichert – bevorzugt per **Graphite Stack Diffs (`gt`)**, sobald `gt auth` aktiv ist:
-
-1. **Neuen Branch / Stack anlegen:** Nie unkontrolliert direkt auf `main` arbeiten – mit `gt create -m "<beschreibung>"` (bzw. `git checkout -b ...`) für jede Änderung einen kurzen Branch anlegen.
-2. **Prüfen & Committen:** Vor dem Commit `pnpm format:check` (und ggf. `pnpm typecheck`) ausführen und die Änderung klar beschreiben.
-3. **Hochladen & PR erstellen:** Mit `gt ss` (Stack Submit) alle offenen Stacks als PRs gegen `main` synchronisieren – bei Review-Feedback `gt modify` + `gt ss`, zum Aufräumen & Rebasen nach Merges `gt sync`. _(Fallback ohne Graphite-Auth: `git push` + PR via `gh api`.)_
-4. **Agenten-Ausführung (Windows & Non-Interactive):** KI-Agenten führen `gt` immer non-interactive aus (`gt create -a -m "<beschreibung>" --no-interactive`, `gt ss --no-interactive`, `gt sync --no-interactive`) und setzen auf Windows `C:\Program Files\Git\mingw64\libexec\git-core` in den `PATH`. Merges auf `main` erfolgen erst nach Freigabe durch den Nutzer.
-5. **Datenschutz, App-Repos & Submodules:** `apps/` bleibt in `company-os/.gitignore` ausgeschlossen — jede App unter `apps/` (`Connect`, `Hyper`, `Analysis`, `Spark`, `Flux`) bekommt ihr **eigenes privates GitHub-Repo** (sobald dort entwickelt wird), niemals in `company-os` pushen. Die Design-Bibliotheken `packages/ui/src/components/shadcn/elements` (`shadcn-ui/ui`) und `packages/ui/src/components/shadcn/studio` (`shadcnstudio/shadcn-studio`) sind als **Git-Submodules** eingebunden — zum Klonen inkl. beider Bibliotheken `git clone --recursive https://github.com/stefankunc/company-os.git` nutzen.
+- Nie direkt auf `main`. Jede Änderung via Graphite PR: `gt create <branch> -a -m "<msg>" --no-interactive` → `gt submit --stack --no-interactive --publish` (Feedback: `gt modify` + `gt ss`; nach Merge: `gt sync --no-interactive`). Fallback ohne `gt`: `git push` + `gh api`.
+- **Windows-PATH für `gt`:** `C:\Program Files\Git\mingw64\libexec\git-core` vor `.bun\bin` setzen.
+- **Merges auf `main`:** Nur nach Nutzer-Freigabe.
+- **Datenschutz & Submodules:** `apps/` bleibt in `.gitignore` (jede App eigenes privates Repo). `elements/` & `studio/` sind Submodules (`git clone --recursive https://github.com/stefankunc/company-os.git`).

@@ -1,19 +1,17 @@
 # Vermeiden (No-Gos)
 
-| Vermeiden                                                                           | Warum                                                                                                    | Stattdessen nutzen                                                                                                 |
-| ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **`npm` oder `yarn`**                                                               | Inkonsistente Lockfiles, bricht das `pnpm`-Workspace-Setup                                               | Immer `pnpm` nutzen                                                                                                |
-| **`margin` für Layout-Abstände**                                                    | Margin-Collapse, unvorhersehbare Größen & verschmelzende Menüpunkte                                      | `gap` im Elternelement (Flexbox/Grid), `padding` oder explizite Wrapper-/Spacer-Elemente                           |
-| **React `useEffect`-Endlosschleifen**                                               | Ein vergessenes oder falsch gesetztes Dependency-Array löst unbemerkt Endlosschleifen aus                | Dependencies sauber definieren und Effekte minimal halten                                                          |
-| **`Promise.all()` bei mehreren APIs / Börsen**                                      | Bricht den gesamten Durchlauf ab und verwirft alle geladenen Daten, sobald eine API kurz nicht antwortet | `Promise.allSettled()` für parallele Kurs- und On-Chain-Abfragen                                                   |
-| **JavaScript für Standard-HTML-Funktionen**                                         | Unnötiger Code, schlechtere Performance & Barrierefreiheit                                               | Natives HTML (z. B. `<details>` / `<summary>` für aufklappbare Bereiche)                                           |
-| **Ungetyptes JavaScript / `any` in TypeScript**                                     | Laufzeitfehler, unklare Datenstrukturen                                                                  | Strikte TypeScript-Typen & feste Schemas                                                                           |
-| **HTMX und React-State in derselben Ansicht mischen**                               | DOM-Konflikte zwischen React Virtual DOM und HTMX                                                        | React/Next.js für komplexe Web-Apps; HTMX nur für einfache server-gerenderte Seiten / Astro                        |
-| **Monolithische, nicht wiederverwendbare Seiten-Komponenten**                       | Schwer wartbar, Code-Duplikate zwischen den CNT-Apps                                                     | Kleine, wiederverwendbare Bausteine (`packages/ui` bzw. `apps/<App>/src/components/ui`)                            |
-| **Manuelles Code-Formatieren / uneinheitlicher Stil**                               | Unsaubere Diffs und Stilbrüche                                                                           | Prettier (`rules/code-formatting.md`) automatisch laufen lassen                                                    |
-| **Komplette Demo-Seiten aus UI-Bibliotheken kopieren**                              | Bläht das Repo auf und zieht ungenutzte Dependencies rein                                                | Nur die benötigte Komponente/den Block übernehmen (`rules/ui-components.md`)                                       |
-| **Pauschales `"use client"` auf ganzen Seiten / veraltetes `getServerSideProps`**   | Bläht das Client-Bundle unnötig auf und umgeht die Vorteile des Next.js App Routers                      | React Server Components (RSC) als Standard nutzen; `"use client"` nur in kleinen interaktiven Einzelkomponenten    |
-| **Ungekapselte, schwach getypte Fremd-SDKs & ungeprüfte externe JSON-Payloads**     | Streut unsichere Calls quer durch alle Apps und führt zu stillen Laufzeitfehlern bei API-Änderungen      | Externe SDKs einmalig hinter typsicheren Wrappern kapseln und externe Payloads zur Laufzeit mit **Zod** validieren |
-| **`SELECT *` / rohe DB-Objekte an Client Components übergeben**                     | Riskiert Datenlecks (Tokens, Hashes, interne Felder) direkt im Client-HTML/JS                            | Zentralen Data Access Layer (`src/data/` + `import "server-only";`) nutzen und nur explizite DTOs zurückgeben      |
-| **Mutationen beim RSC-Rendern / Auth nur auf Seiten-Ebene prüfen**                  | Unerwartete Seiteneffekte & Sicherheitslücken bei direktem Datenzugriff                                  | Schreibvorgänge nur in Server Actions (`"use server"` + Zod); Auth bei jedem Datenzugriff im DAL neu prüfen        |
-| **Rohe Third-Party-`<script>`-Tags & schwere Standard-Embeds (YouTube, Maps, GTM)** | Blockiert den Browser-Thread massiv (bis zu 65× höhere Total Blocking Time)                              | `@next/third-parties` für optimiertes GTM sowie schnelle Lite-Embeds erst bei Bedarf nutzen                        |
+- **`npm` / `yarn`** → Immer `pnpm`.
+- **`margin` für Layout-Abstände** → `gap` im Parent, `padding` oder Spacer (kein Margin-Collapse).
+- **React `useEffect`-Endlosschleifen** → Dependency-Array sauber setzen, Effekte minimal halten.
+- **`Promise.all()` für mehrere APIs/Börsen** → `Promise.allSettled()` (ein Ausfall darf nicht alles verwerfen).
+- **JS für Standard-HTML** → Natives HTML (`<details>`/`<summary>`).
+- **Ungetyptes JS / `any`** → Strikte TypeScript-Typen & feste Schemas.
+- **HTMX + React-State mischen** → React/Next.js für Web-Apps; HTMX nur für einfache Server-/Astro-Seiten.
+- **Monolithische Seiten-Komponenten** → Kleine Bausteine (`packages/ui` bzw. `apps/<App>/src/components/ui`).
+- **Manuelles Formatieren** → Prettier (`pnpm format`).
+- **Ganze Demo-Seiten/Repos kopieren** → Nur benötigte Komponente/Block (`rules/ui-components.md`).
+- **Pauschales `"use client"` / `getServerSideProps`** → RSC-First; `"use client"` nur in kleinen Inseln.
+- **Ungekapselte Fremd-SDKs / ungeprüftes JSON** → Typsichere Wrapper + **Zod**-Laufzeitvalidierung.
+- **`SELECT *` / rohe DB-Objekte an Client** → DAL (`src/data/` + `import "server-only";`) + explizite DTOs.
+- **Mutationen beim RSC-Rendern / Auth nur in Seite** → Mutationen nur in Server Actions (`"use server"` + Zod); Auth bei jedem DAL-Zugriff prüfen.
+- **Rohe Third-Party-`<script>` / schwere Embeds (YouTube, Maps, GTM)** → `@next/third-parties` (Lite-Embeds / optimiertes GTM).
