@@ -31,7 +31,7 @@ CNT/
 
 ## 4. Security & Data Access Layer (DAL)
 
-- **Drizzle + Präfixe:** Schemas in TS mit `tableCreator` (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`).
+- **Drizzle + Präfixe & Primärschlüssel:** Schemas in TS mit `tableCreator` (`connect_`, `hyper_`, `analysis_`, `spark_`, `flux_`). Als Primärschlüssel zeitlich sortierbare **UUID v7** (nativer Postgres-`uuid`-Typ, nie `varchar`/`text`) oder `bigint`/`identity` nutzen – keine zufälligen UUID v4 (verhindert B-Tree-Fragmentierung & Index-Bloat).
 - **Indizes & sichere Migrationen:** In PostgreSQL/Drizzle auf **jeden Foreign Key** (`userId`, `orgId`, …) und häufige Filter-/Sortier-Spalten explizit einen `index()` setzen (Postgres indiziert FKs _nicht_ automatisch → verhindert teure Full Table Scans); keine redundanten Left-Prefix-Duplikate (bei `(user_id, created_at)` kein extra Index auf `(user_id)`). Schema-Änderungen als versionierte Drizzle-Migrationen zuerst auf einem isolierten **DB-Branch** (z. B. Neon Branch) testen – nie blind auf Prod pushen; bei Live-Spalten **Expand-and-Contract** nutzen (erst neue Spalte optional anlegen, Code/Daten umstellen, alte Spalte erst im nächsten Deploy entfernen).
 - **Typ-Inferenz & Request-Deduplication:** Keine manuellen Doppel-Typen für DB/Schemas schreiben – immer direkt aus **Drizzle** (`$inferSelect`/`$inferInsert`) und **Zod** (`z.infer`) ableiten. Wiederholt aufgerufene DAL-Leseabfragen mit React `cache()` wrappen, um doppelte DB-Queries im selben Request zu vermeiden.
 - **Zentraler DAL (`src/data/`):** Oben `import "server-only";` (bricht Build bei Client-Import).
