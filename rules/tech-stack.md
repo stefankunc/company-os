@@ -6,7 +6,7 @@
 - **React:** Wiederverwendbare UI-Bausteine in Next.js.
 - **Astro:** Statische/Content-First Landing Pages & SEO-Seiten (`apps/Company-OS`).
 - **HTMX:** Nur für einfache server-gerenderte Bereiche / Astro (nie mit React-State mischen).
-- **React Native (Expo):** iOS/Android-Apps mit geteilten Typen aus `@cnt/types`.
+- **React Native (Expo):** Android- & iOS-Apps mit geteilten Typen aus `@cnt/types`; immer **Expo Prebuild (CNG / Config Plugins) + Dev Client + EAS Cloud-Builds** (kein manuelles `android/`/`ios/`-Ejecting, sauber auf Windows entwickelbar).
 
 ## Sprache, Daten & Styling
 
