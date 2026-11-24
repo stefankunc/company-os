@@ -8,7 +8,7 @@ CNT/
 ├── packages/
 │   ├── ui/src/components/shadcn/{elements, editable, studio}   # @cnt/ui
 │   └── types/                                                  # @cnt/types
-├── rules/ (tech-stack, aufbau, vermeiden, ui-components, fonts, video-production, code-formatting)
+├── rules/ (tech-stack, aufbau, vermeiden, ui-components, fonts, video-production, code-formatting, model-selection)
 └── package.json, pnpm-workspace.yaml, tsconfig.base.json, Claude.md
 ```
 

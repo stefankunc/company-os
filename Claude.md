@@ -11,6 +11,7 @@
 - `rules/fonts.md` – Geist & Geist Mono
 - `rules/video-production.md` – Headless-Videos in `apps/Analysis`
 - `rules/code-formatting.md` – Prettier
+- `rules/model-selection.md` – Live-Modell-Recherche, Vergleich & Empfehlung pro Task/Projekt
 
 ## Kernregeln (immer aktiv)
 
