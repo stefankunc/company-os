@@ -19,8 +19,10 @@ coverage
 .env
 .env*.local
 
-# Lokale Tool-Junctions (z. B. .claude/skills -> .agents/skills)
+# Lokale Tool-Junctions & Factory Runtime-Artefakte
 .claude/
+/.factory-worktrees/
+/factory/
 
 # OS & editor
 .DS_Store

@@ -1,5 +1,6 @@
 import path from "node:path";
 import { detectInstalledTools } from "./agents.ts";
+import { runEvolveLoop } from "./evolve.ts";
 import { initProjectFromSpec, loadPrd, runFactoryLoop } from "./orchestrator.ts";
 import { AGENT_PROVIDERS, type AgentProvider } from "./schema.ts";
 
@@ -37,6 +38,7 @@ Commands:
   doctor                                  Check installed agent CLIs & runtime tools
   init --spec <file.pdf|md> --project <dir> [--builder claude] [--reviewers codex,gemini] [--vision gemini] [--max-hours 72] [--base-branch main]
   run --project <dir> [--max-hours 72] [--dry-run]
+  evolve [--hours 48] [--max-rounds 40] [--builder claude] [--evaluator codex] [--base-branch main] [--dry-run]
   status --project <dir>                  Print current PRD progress`);
 }
 
@@ -99,6 +101,26 @@ async function main() {
     });
     const done = prd.tasks.filter((t) => t.status === "completed").length;
     console.log(`Factory run ended: ${done}/${prd.tasks.length} tasks completed.`);
+    return;
+  }
+
+  if (command === "evolve") {
+    const hours = typeof flags.hours === "string" ? Number(flags.hours) : 48;
+    const maxRounds = typeof flags["max-rounds"] === "string" ? Number(flags["max-rounds"]) : 40;
+    const builderAgent = asProvider(flags.builder, "claude");
+    const evaluatorAgent = asProvider(flags.evaluator, "codex");
+    const baseBranch = typeof flags["base-branch"] === "string" ? flags["base-branch"] : "main";
+    const cntRepoDir = typeof flags.repo === "string" ? path.resolve(flags.repo) : process.cwd();
+
+    await runEvolveLoop({
+      cntRepoDir,
+      hours,
+      maxRounds,
+      builderAgent,
+      evaluatorAgent,
+      baseBranch,
+      dryRun: flags["dry-run"] === true,
+    });
     return;
   }
 
