@@ -1,6 +1,7 @@
 ---
 name: code-review
 description: Erzeugt einen fertigen Copy-Paste-Prompt für ein Cross-Model Code-Review in einer neuen Konversation mit einem anderen KI-Modell. Trigger: /code-review, "code review", "review prompt".
+disable-model-invocation: true
 ---
 
 # Cross-Model Code-Review Prompt Generator (`/code-review`)

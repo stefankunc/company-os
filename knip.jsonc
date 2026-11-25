@@ -1,0 +1,21 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignore": [
+    "apps/**",
+    "packages/ui/src/components/shadcn/elements/**",
+    "packages/ui/src/components/shadcn/studio/**",
+  ],
+  "workspaces": {
+    "packages/factory": {
+      "ignoreBinaries": ["next"],
+    },
+    "packages/ui": {
+      "entry": ["src/components/shadcn/editable/editable-demo.tsx"],
+      "ignoreDependencies": ["lucide-react"],
+      "ignoreIssues": {
+        "src/components/ui/*.tsx": ["exports"],
+        "src/components/shadcn/editable/*.tsx": ["exports"],
+      },
+    },
+  },
+}

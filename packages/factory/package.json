@@ -1,0 +1,19 @@
+{
+  "name": "@cnt/factory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "cnt-factory": "./src/cli.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "start": "node ./src/cli.ts"
+  },
+  "dependencies": {
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  }
+}
