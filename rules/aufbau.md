@@ -9,7 +9,7 @@ CNT/
 │   ├── ui/src/components/shadcn/{elements, editable, studio}   # @cnt/ui
 │   └── types/                                                  # @cnt/types
 ├── rules/ (tech-stack, aufbau, vermeiden, ui-components, fonts, video-production, code-formatting, model-selection)
-└── package.json, pnpm-workspace.yaml, tsconfig.base.json, Claude.md
+└── package.json, pnpm-workspace.yaml, tsconfig.base.json, AGENTS.md, Claude.md
 ```
 
 ## 2. Komponenten, RSC & Daten
@@ -45,6 +45,6 @@ CNT/
 
 ## 5. GitHub-Repo-Aufteilung
 
-- **`stefankunc/company-os` (privat):** `Claude.md`, `rules/`, `packages/ui`, `packages/types`, Submodules (`elements/`, `studio/`), Root-Configs.
+- **`stefankunc/company-os` (privat):** `AGENTS.md` (+ `Claude.md`-Pointer), `rules/`, `packages/ui`, `packages/types`, Submodules (`elements/`, `studio/`), Root-Configs.
 - **App-Repos (je privat):** `apps/` bleibt in `.gitignore`; jede App bekommt ihr eigenes privates Repo, sobald dort Code entsteht. Lokal trotzdem voll über `pnpm-workspace.yaml` verbunden.
 - **Kleine, atomare PRs (Graphite Stacking):** Änderungen in kleine, fokussierte PRs aufteilen und über Graphite (`gt`) stacken – keine monolithischen 500+-Zeilen-PRs.
