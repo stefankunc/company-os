@@ -20,7 +20,7 @@
 2. **Code & Layout:** Komponenten klein halten, Logik in `.ts`/Hooks trennen. Abstände via `gap`/`padding`/Spacer (kein `margin`). Natives HTML (`<details>`/`<summary>`) vor JS.
 3. **UI:** Lokal prüfen → `ui.shadcn.com` → `shadcn.io` → `shadcnstudio.com` → bevorzugt CLI, Ablage laut `rules/ui-components.md`. Offline-Backup `Editable`: `C:\Users\Kunc GmbH\Documents\Tools Connect\ShadCN\components_ui`.
 4. **Videos:** Über `apps/Analysis` (Remotion/HyperFrames + `Vorlagen/`) – **strikt headless**, nie `localhost`/Studio öffnen, fertige Datei aus `outputs/` liefern.
-5. **Qualität & Kürze:** `pnpm format:check` + `pnpm typecheck` vor Commit. PRs, Commits & Beschreibungen radikal kurz (1–3 Zeilen, null Füllwörter).
+5. **Qualität & Kürze:** `pnpm format:check` + `pnpm typecheck` + Tests vor Commit; nie eigenmächtig dauerhafte `pnpm dev`-Hintergrund-Server starten (blockiert Ports/Caches). PRs, Commits & Beschreibungen radikal kurz (1–3 Zeilen, null Füllwörter).
 6. **Architektur-Interview, Review & Wissen:** Bei neuen Features/Architekturen nicht blind losbauen – aktiv gezielte Rückfragen stellen, sodass der Nutzer die gewünschte Architektur & Datenflüsse selbst erklärt und wir sie gemeinsam abstimmen. Bei Fach-/Architekturfragen über **NotebookLM MCP** in den eigenen Wissens-Notebooks (z. B. Theo) nachschlagen. Code-Review per `/code-review` als fertigen Copy-Paste-Prompt für ein zweites KI-Modell im neuen Chat erzeugen.
 
 ## Git & Graphite (`stefankunc/company-os`)
