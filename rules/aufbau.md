@@ -8,7 +8,7 @@ CNT/
 ├── packages/
 │   ├── ui/src/components/shadcn/{elements, editable, studio}   # @cnt/ui
 │   └── types/                                                  # @cnt/types
-├── .agents/skills/ (code-review, next-rsc-audit, drizzle-pg-ops) # Repo-Skills für alle Agents
+├── .agents/skills/ (code-review, next-rsc-audit, drizzle-pg-ops, frontend-design) # Repo-Skills für alle Agents
 ├── rules/ (tech-stack, aufbau, vermeiden, ui-components, fonts, video-production, code-formatting, model-selection)
 └── package.json, pnpm-workspace.yaml, tsconfig.base.json, AGENTS.md, Claude.md
 ```

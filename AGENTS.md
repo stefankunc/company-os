@@ -12,7 +12,7 @@
 - `rules/video-production.md` – Headless-Videos in `apps/Analysis`
 - `rules/code-formatting.md` – Prettier
 - `rules/model-selection.md` – Live-Modell-Recherche, Vergleich & Empfehlung pro Task/Projekt
-- `.agents/skills/` – Repo-Skills (`code-review`, `next-rsc-audit`, `drizzle-pg-ops`; lokal per Junction auch unter `.claude/skills/`)
+- `.agents/skills/` – Repo-Skills (`code-review`, `next-rsc-audit`, `drizzle-pg-ops`, `frontend-design`; lokal per Junction auch unter `.claude/skills/`)
 
 ## Kernregeln (immer aktiv)
 
